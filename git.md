@@ -20,4 +20,4 @@ git commit -m "第一次提交"   提交到 版本库
 
 git log 查看版本记录
 
-git status 查看当前版本库的状态
+git status 查看当前版本库的状态.
