@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet"
+        href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800;900&display=swap" />
+    <link rel="stylesheet" href="https://cdn.staticfile.org/font-awesome/4.7.0/css/font-awesome.min.css" />
+    <link rel="stylesheet" href="./index.css">
+    <script src="https://cdn.bootcdn.net/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+
+</head>
+
+<body>
+    <div class="player">
+        <div class="player__top">
+            <div class="player-cover">
+                <div class="player-cover__item"></div>
+            </div>
+            <div class="player-controls">
+                <a href="#"><i class="fa fa-heart" aria-hidden="true"></i></a>
+                <a href="#"><i class="fa fa-external-link" aria-hidden="true"></i></a>
+                <a href="#"><i class="fa fa-backward" aria-hidden="true"></i></a>
+                <a href="#"><i class="fa fa-forward" aria-hidden="true"></i></a>
+                <a href="#"><i class="xl active fa fa-play-circle-o" aria-hidden="true"></i></a>
+                <a href="#"><i class="xl fa fa-pause-circle-o" aria-hidden="true"></i></a>
+            </div>
+        </div>
+        <div class="progress">
+            <div class="progress__top">
+                <div class="album-info">
+                    <div class="album-info__name">Norm Ender</div>
+                    <div class="album-info__track">Mekanin Sahibi</div>
+                </div>
+                <div class="progress__duration">03:09</div>
+            </div>
+
+            <div class="progress__bar">
+                <div class="progress__current"></div>
+            </div>
+            <div class="progress__time">
+                <span class="minutes">0</span>
+                <span>:</span>
+                <span class="seconds">0</span>
+            </div>
+        </div>
+    </div>
+    <audio controls>
+        <source src="./media/mp3_1.mp3" type="audio/mp3">
+    </audio>
+
+    <script>
+        var play = document.querySelector('.fa-play-circle-o');
+        var pause = document.querySelector('.fa-pause-circle-o');
+        var audio = document.querySelector('audio');
+        var progressBar = document.querySelector('.progress__bar');
+        var progress = document.querySelector('.progress__current');
+        var progressTime = document.querySelector('.progress__time');
+        var minutes = document.querySelector('.minutes');
+        var seconds = document.querySelector('.seconds');
+        var redHeart = document.querySelector('.fa-heart');
+
+        var musicSwitch = false;
+        var i = 0;
+        redHeart.onclick = function () {
+            i++;
+            if (i % 2 === 0) {
+                redHeart.style.color = "#acb8cc";
+            } else {
+                redHeart.style.color = "red";
+            };
+        };
+
+        $(play).click(function () {
+            musicSwitch = true;
+            if (musicSwitch === true) {
+                audio.play();
+                $(this).removeClass('active');
+                $(pause).addClass('active');
+            };
+        });
+        $(pause).click(function () {
+            musicSwitch = false;
+            if (musicSwitch === false) {
+                audio.pause();
+                $(this).removeClass('active')
+                $(play).addClass('active');
+            };
+        });
+
+        setInterval(function () {
+            var time = Math.floor(audio.currentTime);
+            var s = parseInt(time % 60);
+            seconds.innerHTML = s < 10 ? "0" + s : s;
+
+            var m = parseInt(time / 60 % 60);
+            minutes.innerHTML = m < 10 ? "0" + m : m;
+
+            progress.style.width = audio.currentTime * (400 / audio.duration) + 'px';
+
+        }, 1000);
+
+        progressBar.onclick = function (event) {
+            audio.currentTime = event.offsetX / (400 / audio.duration);
+            progress.style.width = audio.currentTime * (400 / audio.duration) + 'px';
+        };
+
+
+        var cover = document.querySelector('.player-cover__item');
+        var prev = document.querySelector(".fa-backward");
+        var next = document.querySelector(".fa-forward");
+        var titleName = document.querySelector('.album-info__name');
+        var track = document.querySelector('.album-info__track');
+        var audio = document.querySelector('audio');
+        var source = document.querySelector('source');
+
+        var imgs = ["./images/1.jpg", "./images/2.jpg", "./images/3.jpg",
+            "./images/4.jpg", "./images/5.jpg", "./images/6.jpg",
+            "./images/7.jpg", "./images/8.jpg", "./images/9.jpg"];
+
+        var nameTests = ["Norm Ender", "Leonard Cohen", "Moby", "Sia",
+            "Haggard", "LSD", "Lindi Ortega", "Grandson", "Human"];
+
+        var trackTests = ["Mekanın Sahibi", "Everybody Knows",
+            "Extreme Ways", "Butterflies", "The Final Victory",
+            "Genius ft. Sia, Diplo, Labrinth", "The Comeback Kid",
+            "Overdose", "Rag'n'Bone Man"];
+
+        var medias = ["./media/mp3_1.mp3", "./media/2.mp3",
+            "./media/mp3_3.mp3", "./media/mp3_4.mp3", "./media/mp3_5.mp3",
+            "./media/6.mp3", "./media/mp3_7.mp3", "./media/8.mp3", "./media/mp3_9.mp3"];
+
+        var current = 0;
+
+        function showContent(n) {
+            for (var i = 0; i < imgs.length; i++) {
+                if (i === n) {
+                    cover.style["background-image"] = "url(" + imgs[i] + ")";
+                    cover.style.transition = "all .3s";
+                    titleName.innerHTML = nameTests[i];
+                    track.innerHTML = trackTests[i];
+                    source.src = medias[i];
+                };
+            };
+        };
+
+        imgs.forEach(function (img) {
+            next.onclick = function () {
+                current++;
+                if (current >= imgs.length) {
+                    current = 0;
+                };
+                showContent(current);
+            };
+            prev.onclick = function () {
+                current--;
+                if (current < 0) {
+                    current = imgs.length - 1;
+                };
+                showContent(current);
+            };
+        });
+    </script>
+
+</body>
+
+</html>
