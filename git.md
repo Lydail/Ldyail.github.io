@@ -52,4 +52,4 @@ git remote get-url origin
 
 
 github pages 托管静态网站
-findindex.github.io 仓库名
+findindex.github.io 仓库名.
