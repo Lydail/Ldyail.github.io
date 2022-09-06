@@ -1,19 +1,126 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="zh">
 <head>
     <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-    <style>
-    
-    </style>
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>梁英定的个人项目</title>
+    <link rel="stylesheet" href="./sidebar.css">
+    <link rel="stylesheet" href="./normalize.min.css">
+    <link rel="stylesheet" href="./style.css">
 </head>
+
 <body>
-    <a href="./music_player/music.html">music</a>
+    <div id="wrapper" style="left:0;">
+        <!-- 侧边栏 -->
+        <div class="sidebar">
+            <div class="headSculpture">
+                <img src="./images/Head_portrait.webp" alt="">
+                <p>昵称：Lydail</p>
+            </div>
+            <div class="option">
+                <ul>
+                    <li>
+                        <a href="#banner1">
+                            <img src="images/home.png" alt="">
+                            <p>首页</p>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#banner3">
+                            <img src="images/works.png" alt="">
+                            <p>我的作品</p>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#banner4">
+                            <img src="./images/html.png" alt="">
+                            <p>静态页面</p>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#banner2">
+                            <img src="images/webPage.png" alt="">
+                            <p>响应式网页</p>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#banner3">
+                            <img src="images/special.png" alt="">
+                            <p>javascript特效</p>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#banner4">
+                            <img src="images/HTML5.png" alt="">
+                            <p>HTML5/CSS3特效</p>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+        <!-- 侧边栏按钮 -->
+        <button></button>
+        <!-- 内容区域 -->
+        <div class="banner" id="banner1">
+            <!-- <h2></h2>
+            <a href="./music_player/music.html">
+                <img src="./images/music.png" alt="">
+            </a> -->
+            <ul class="honeycomb" lang="es">
+                <li class="honeycomb-cell">
+                    <img class="honeycomb-cell__image" src="./images/music.png">
+                    <div class="honeycomb-cell__title">Diseño exclusivo</div>
+                </li>
+                <li class="honeycomb-cell">
+                    <img class="honeycomb-cell__image" src="./images/music.png">
+                    <div class="honeycomb-cell__title">Impermeables</div>
+                </li>
+                <li class="honeycomb-cell">
+                    <img class="honeycomb-cell__image" src="./images/music.png">
+                    <div class="honeycomb-cell__title">Tablero doble cara</div>
+                </li>
+                <li class="honeycomb-cell">
+                    <img class="honeycomb-cell__image" src="./images/music.png">
+                    <div class="honeycomb-cell__title">Maletín de empaque</div>
+                </li>
+                <li class="honeycomb-cell">
+                    <img class="honeycomb-cell__image" src="./images/music.png">
+                    <div class="honeycomb-cell__title">Antireflectivo<small>No vidrio</small></div>
+                </li>
+                <li class="honeycomb-cell">
+                    <img class="honeycomb-cell__image" src="./images/music.png">
+                    <div class="honeycomb-cell__title">6 fichas<small>1 de repuesto</small></div>
+                </li>
+                <li class="honeycomb-cell">
+                    <img class="honeycomb-cell__image" src="./images/music.png">
+                    <div class="honeycomb-cell__title">Tablero magnético</div>
+                </li>
+                <li class="honeycomb-cell honeycomb__placeholder"></li>
+            </ul>
 
-    <script>
-
-    </script>
+        </div>
+        <div class="banner" id="banner2">
+            <h2></h2>
+            <a href="./music_player/music.html">
+                <img src="./images/music.png" alt="">
+            </a>
+        </div>
+        <div class="banner" id="banner3">
+            <h2></h2>
+            <a href="./music_player/music.html">
+                <img src="./images/music.png" alt="">
+            </a>
+        </div>
+        <div class="banner" id="banner4">
+            <h2></h2>
+            <a href="./music_player/music.html">
+                <img src="./images/music.png" alt="">
+            </a>
+        </div>
+    </div>
+    <script src="./jquery.min.js"></script>
+    <script src="./sidebar.js"></script>
 </body>
+
 </html>
