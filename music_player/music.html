@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>音乐播放器</title>
     <link rel="stylesheet"
         href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800;900&display=swap" />
     <link rel="stylesheet" href="https://cdn.staticfile.org/font-awesome/4.7.0/css/font-awesome.min.css" />
@@ -25,8 +25,8 @@
                 <a href="#"><i class="fa fa-external-link" aria-hidden="true"></i></a>
                 <a href="#"><i class="fa fa-backward" aria-hidden="true"></i></a>
                 <a href="#"><i class="fa fa-forward" aria-hidden="true"></i></a>
-                <a href="#"><i class="xl active fa fa-play-circle-o" aria-hidden="true"></i></a>
-                <a href="#"><i class="xl fa fa-pause-circle-o" aria-hidden="true"></i></a>
+                <a class="none" href="#"><i class="xl active fa fa-play-circle-o" aria-hidden="true"></i></a>
+                <a class="none" href="#"><i class="xl fa fa-pause-circle-o" aria-hidden="true"></i></a>
             </div>
         </div>
         <div class="progress">
@@ -40,6 +40,7 @@
 
             <div class="progress__bar">
                 <div class="progress__current"></div>
+                <input type="range" name="" id="range">
             </div>
             <div class="progress__time">
                 <span class="minutes">0</span>
@@ -48,9 +49,10 @@
             </div>
         </div>
     </div>
-    <audio controls>
+    <!-- <audio controls>
         <source src="./media/mp3_1.mp3" type="audio/mp3">
-    </audio>
+    </audio> -->
+    <audio src="./media/mp3_1.mp3" controls></audio>
 
     <script>
         var play = document.querySelector('.fa-play-circle-o');
@@ -62,6 +64,8 @@
         var minutes = document.querySelector('.minutes');
         var seconds = document.querySelector('.seconds');
         var redHeart = document.querySelector('.fa-heart');
+        var audio = document.querySelector('audio');
+        var range = document.getElementById('range');
 
         var musicSwitch = false;
         var i = 0;
@@ -91,21 +95,20 @@
             };
         });
 
-        setInterval(function () {
+        range.oninput = function (event) {
+            progress.style.width = this.value + '%';
+            audio.currentTime = (this.value * audio.duration) / 100;
+        }
+
+        audio.ontimeupdate = function () {
             var time = Math.floor(audio.currentTime);
             var s = parseInt(time % 60);
             seconds.innerHTML = s < 10 ? "0" + s : s;
-
+            
             var m = parseInt(time / 60 % 60);
             minutes.innerHTML = m < 10 ? "0" + m : m;
-
-            progress.style.width = audio.currentTime * (400 / audio.duration) + 'px';
-
-        }, 1000);
-
-        progressBar.onclick = function (event) {
-            audio.currentTime = event.offsetX / (400 / audio.duration);
-            progress.style.width = audio.currentTime * (400 / audio.duration) + 'px';
+            
+            progress.style.width = (this.currentTime / this.duration) * 100 + "%";
         };
 
 
@@ -114,8 +117,7 @@
         var next = document.querySelector(".fa-forward");
         var titleName = document.querySelector('.album-info__name');
         var track = document.querySelector('.album-info__track');
-        var audio = document.querySelector('audio');
-        var source = document.querySelector('source');
+
 
         var imgs = ["./images/1.jpg", "./images/2.jpg", "./images/3.jpg",
             "./images/4.jpg", "./images/5.jpg", "./images/6.jpg",
@@ -142,7 +144,10 @@
                     cover.style.transition = "all .3s";
                     titleName.innerHTML = nameTests[i];
                     track.innerHTML = trackTests[i];
-                    source.src = medias[i];
+                    audio.src = medias[i];
+                    if (musicSwitch === true) {
+                        audio.play();
+                    }
                 };
             };
         };
