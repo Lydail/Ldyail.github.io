@@ -108,6 +108,7 @@
             xhr.onreadystatechange = function () {
                 if (xhr.readyState === 4 && xhr.status === 200) {
                     callback(JSON.parse(xhr.response));
+                    console.log(JSON.parse(xhr.response));
                 }
             };
             xhr.open("GET", url, true);
@@ -128,7 +129,13 @@
                 if (res.data) {
                     res.data.forEach(function (e) {
                         var node = document.createElement('li');
-                        node.innerHTML = '<img src="' + e.vertical_cover + '"' + '>' + '<p>' + e.title + '</p>' + '<span>' + "[完结] 共" + e.total + "话" + '</span>';
+                        var f = '';
+                        if (e.is_finish === 1) {
+                            f = "完结";
+                        } else {
+                            f = "连载";
+                        }
+                        node.innerHTML = '<img src="' + e.vertical_cover + '"' + '>' + '<p>' + e.title + '</p>' + '<span>' + "[" + f + "] 共" + e.total + "话" + '</span>';
                         manHua.appendChild(node);
                     });
                 }
