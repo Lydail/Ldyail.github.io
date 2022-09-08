@@ -200,6 +200,20 @@ ul {
     left: 270px;
 }
 
+.banner .home {
+    width: 1000px;
+    height: 753.6px;
+    margin-left: 80px;
+    padding-top: 60px;
+    padding-bottom: 60px;
+    box-sizing: border-box;
+    overflow: auto;
+}
+
+.banner .home h1,h3 {
+    margin: 20px;
+}
+
 .banner .cards {
     display: flex;
     flex-wrap: wrap;
