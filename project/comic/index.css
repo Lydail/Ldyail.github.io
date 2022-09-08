@@ -1,0 +1,81 @@
+.box {
+  width: 1200px;
+  margin: 0 auto;
+  display: flex;
+  justify-content: space-between;
+}
+.box .type {
+  width: 50px;
+  margin: 30px 0;
+}
+.box .type li {
+  margin: 10px 0;
+  color: gray;
+}
+.box .type-box {
+  width: 100%;
+  margin: 30px 0;
+}
+.box .type-box .fl {
+  display: flex;
+  justify-content: space-between;
+}
+.box .type-box .fl li {
+  margin: 10px 0;
+  cursor: pointer;
+}
+.box .type-box .fl li:nth-child(1) {
+  color: #32bdff;
+}
+.box .type-box .diqu {
+  justify-content: flex-start;
+}
+.box .type-box .diqu li {
+  margin: 0 30px;
+}
+.box .type-box .diqu li:nth-child(1) {
+  margin: 0;
+}
+.box .type-box .jindu {
+  justify-content: flex-start;
+}
+.box .type-box .jindu li {
+  margin: 10px 30px;
+}
+.box .type-box .jindu li:nth-child(1) {
+  margin: 10px 0;
+}
+.box .type-box .shoufei {
+  justify-content: flex-start;
+}
+.box .type-box .shoufei li {
+  margin: 0px 30px;
+}
+.box .type-box .shoufei li:nth-child(1) {
+  margin: 0;
+}
+.box .type-box .paixv {
+  justify-content: flex-start;
+}
+.box .type-box .paixv li {
+  margin: 10px 30px;
+}
+.box .type-box .paixv li:nth-child(1) {
+  margin: 10px 0;
+}
+.manhua {
+  width: 1200px;
+  margin: -20px auto;
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+}
+.manhua li {
+  width: 180px;
+  height: 234px;
+  margin: 40px 0;
+}
+.manhua li span {
+  color: gray;
+  font-size: 12px;
+}

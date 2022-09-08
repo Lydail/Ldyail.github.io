@@ -1,0 +1,333 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="referrer" content="never">
+    <title>b站漫画</title>
+    <link rel="stylesheet" href="./reset.css">
+    <link rel="stylesheet" href="./index.css">
+</head>
+
+<body>
+    <div class="box">
+        <ul class="type">
+            <li>题材</li>
+            <li>地区</li>
+            <li>进度</li>
+            <li>收费</li>
+            <li>排序</li>
+        </ul>
+        <div class="type-box">
+            <ul class="fl ticai">
+                <li>全部</li>
+                <li>热血</li>
+                <li>古风</li>
+                <li>玄幻</li>
+                <li>奇幻</li>
+                <li>悬疑</li>
+                <li>都市</li>
+                <li>历史</li>
+                <li>武侠仙侠</li>
+                <li>游戏竞技</li>
+                <li>悬疑灵异</li>
+                <li>架空</li>
+                <li>青春</li>
+                <li>西幻</li>
+                <li>现代</li>
+                <li>正能量</li>
+                <li>科幻</li>
+            </ul>
+            <ul class="fl diqu">
+                <li>全部</li>
+                <li>大陆</li>
+                <li>日本</li>
+                <li>韩国</li>
+                <li>其他</li>
+            </ul>
+            <ul class="fl jindu">
+                <li>全部</li>
+                <li>连载</li>
+                <li>完结</li>
+            </ul>
+            <ul class="fl shoufei">
+                <li>免费</li>
+                <li>付费</li>
+                <li>等就免费</li>
+            </ul>
+            <ul class="fl paixv">
+                <li>人气推荐</li>
+                <li>更新时间</li>
+                <li>追漫人数</li>
+                <li>上架时间</li>
+            </ul>
+        </div>
+    </div>
+
+
+    <ul class="manhua">
+        <!-- <li></li> -->
+    </ul>
+
+    <script>
+        var tiCaiEl = document.querySelector('.ticai');
+        var tiCai = tiCaiEl.querySelectorAll('li');
+
+        var diquEl = document.querySelector('.diqu');
+        var diQu = diquEl.querySelectorAll('li');
+
+        var jinduEl = document.querySelector('.jindu');
+        var jinDu = jinduEl.querySelectorAll('li');
+
+        var shoufeiEl = document.querySelector('.shoufei');
+        var shouFei = shoufeiEl.querySelectorAll('li');
+
+        var paixvEl = document.querySelector('.paixv');
+        var paiXv = paixvEl.querySelectorAll('li');
+
+        var manHua = document.querySelector('.manhua');
+
+        var styleId = [-1, 999, 997, 1016, 998, 1023, 1002, 1096, 1092, 1088, 1081, 1063, 1060, 1054, 1048, 1028, 1015];
+        var areaId = [-1, 1, 2, 6, 5];
+        var isFinish = [-1, 0, 1];
+        var isFree = [-1, 1, 2, 3];
+        var order = [0, 1, 2, 3];
+        var pageNum = [1];
+        var style = -1;
+        var area = -1;
+        var finish = -1;
+        var free = -1;
+        var or = 0;
+        var page = 1;
+
+
+        function getJSON(url, callback) {
+            var xhr = new XMLHttpRequest();
+            xhr.onreadystatechange = function () {
+                if (xhr.readyState === 4 && xhr.status === 200) {
+                    callback(JSON.parse(xhr.response));
+                }
+            };
+            xhr.open("GET", url, true);
+            xhr.send();
+        }
+
+
+        function show(n, arr) {
+            for (let j = 0; j < arr.length; j++) {
+                if (j === n) {
+                    arr[j].style.color = "#32bdff";
+                } else {
+                    arr[j].style.color = "black";
+                }
+            }
+            getJSON("https://apis.netstart.cn/bcomic/ClassPage?styleId=" + style + "&areaId=" + area + "&isFinish=" + finish + "&order=" + or + "&pageNum=" + page + "&pageSize=39&isFree=" + free, function (res) {
+                manHua.innerHTML = '';
+                if (res.data) {
+                    res.data.forEach(function (e) {
+                        var node = document.createElement('li');
+                        node.innerHTML = '<img src="' + e.vertical_cover + '"' + '>' + '<p>' + e.title + '</p>' + '<span>' + "[完结] 共" + e.total + "话" + '</span>';
+                        manHua.appendChild(node);
+                    });
+                }
+            });
+        }
+        show(0, tiCai);
+        tiCai.forEach(function (e, i) {
+            e.onclick = function () {
+                style = styleId[i];
+                show(i, tiCai);
+            };
+        });
+
+        diQu.forEach(function (e, i) {
+            e.onclick = function () {
+                area = areaId[i];
+                show(i, diQu);
+            };
+        });
+        jinDu.forEach(function (e, i) {
+            e.onclick = function () {
+                finish = isFinish[i];
+                show(i, jinDu);
+            };
+        });
+
+        shouFei.forEach(function (e, i) {
+            e.onclick = function () {
+                free = isFree[i];
+                show(i, shouFei);
+            };
+        });
+
+        paiXv.forEach(function (e, i) {
+            e.onclick = function () {
+                or = order[i];
+                show(i, paiXv);
+            };
+        })
+
+    </script>
+
+    <!-- <script>
+        var tiCaiEl = document.querySelector('.ticai');
+        var tiCai = tiCaiEl.querySelectorAll('li');
+
+        var diquEl = document.querySelector('.diqu');
+        var diQu = diquEl.querySelectorAll('li');
+
+        var jinduEl = document.querySelector('.jindu');
+        var jinDu = jinduEl.querySelectorAll('li');
+
+        var shoufeiEl = document.querySelector('.shoufei');
+        var shouFei = shoufeiEl.querySelectorAll('li');
+
+        var paixvEl = document.querySelector('.paixv');
+        var paiXv = paixvEl.querySelectorAll('li');
+
+        var manHua = document.querySelector('.manhua');
+
+        var  = [-1, 999, 997, 1016, 998, 1023, 1002, 1096, 1092, 1088, 1081, 1063, 1060, 1054, 1048, 1028, 1015];
+        var areaId = [-1, 1, 2, 6, 5];
+        var isFinish = [-1, 0, 1];
+        var isFree = [-1, 1, 2, 3];
+        var order = [0, 1, 2, 3];
+        var pageNum = [1];
+
+        function getJSON(url, callback) {
+            var xhr = new XMLHttpRequest();
+
+            xhr.onreadystatechange = function () {
+                if (xhr.readyState === 4 && xhr.status === 200) {
+                    callback(JSON.parse(xhr.response));
+                    // console.log(xhr.response);
+                }
+            };
+
+            xhr.open("GET", url, true);
+            xhr.send();
+        }
+
+
+        function showStyleId(n) {
+            for (var i = 0; i < styleId.length; i++) {
+                if (i === n) {
+                    getJSON("https://apis.netstart.cn/bcomic/ClassPage?styleId=" + styleId[i] + "&areaId=-1&isFinish=-1&order=0&pageNum=1&pageSize=39&isFree=-1", function (res) {
+                        manHua.innerHTML = '';
+                        if (res.data) {
+                            res.data.forEach(function (e) {
+                                var node = document.createElement('li');
+                                node.innerHTML = '<img src="' + e.vertical_cover + '"' + '>' + '<p>' + e.title + '</p>' + '<span>' + "[完结] 共" + e.total + "话" + '</span>';
+                                manHua.appendChild(node);
+                            });
+                        }
+                    })
+                }
+            }
+        }
+        showStyleId(0);
+        tiCai.forEach(function (e, i) {
+            e.onclick = function () {
+                showStyleId(i);
+            }
+        })
+
+        function showAreaId(n) {
+            for (var i = 0; i < areaId.length; i++) {
+                if (i === n) {
+                    getJSON("https://apis.netstart.cn/bcomic/ClassPage?styleId=999&areaId=" + areaId[i] + "&isFinish=-1&order=0&pageNum=1&pageSize=39&isFree=-1", function (res) {
+                        manHua.innerHTML = '';
+                        if (res.data) {
+                            res.data.forEach(function (e) {
+                                var node = document.createElement('li');
+                                node.innerHTML = '<img src="' + e.vertical_cover + '"' + '>' + '<p>' + e.title + '</p>' + '<span>' + "[完结] 共" + e.total + "话" + '</span>';
+                                manHua.appendChild(node);
+                            });
+                        }
+                    })
+                }
+            }
+        }
+        showAreaId(0)
+        diQu.forEach(function (e, i) {
+            e.onclick = function () {
+                showAreaId(i);
+            }
+        })
+
+        function showIsFinish(n) {
+            for (var i = 0; i < isFinish.length; i++) {
+                if (i === n) {
+                    getJSON("https://apis.netstart.cn/bcomic/ClassPage?styleId=999&areaId=-1&isFinish=" + areaId[i] + "&order=0&pageNum=1&pageSize=39&isFree=-1", function (res) {
+                        manHua.innerHTML = '';
+                        if (res.data) {
+                            res.data.forEach(function (e) {
+                                var node = document.createElement('li');
+                                node.innerHTML = '<img src="' + e.vertical_cover + '"' + '>' + '<p>' + e.title + '</p>' + '<span>' + "[完结] 共" + e.total + "话" + '</span>';
+                                manHua.appendChild(node);
+                            });
+                        }
+                    })
+                }
+            }
+        }
+        showIsFinish(0)
+        jinDu.forEach(function (e, i) {
+            e.onclick = function () {
+                showIsFinish(i);
+            }
+        })
+
+        function showIsFree(n) {
+            for (var i = 0; i < order.length; i++) {
+                if (i === n) {
+                    getJSON("https://apis.netstart.cn/bcomic/ClassPage?styleId=999&areaId=-1&isFinish=-1&order=0&pageNum=1&pageSize=39&isFree=" + areaId[i], function (res) {
+                        manHua.innerHTML = '';
+                        if (res.data) {
+                            res.data.forEach(function (e) {
+                                var node = document.createElement('li');
+                                node.innerHTML = '<img src="' + e.vertical_cover + '"' + '>' + '<p>' + e.title + '</p>' + '<span>' + "[完结] 共" + e.total + "话" + '</span>';
+                                manHua.appendChild(node);
+                            });
+                        }
+                    })
+                }
+            }
+        }
+        showIsFree(0)
+        shouFei.forEach(function (e, i) {
+            e.onclick = function () {
+                showIsFree(i)
+            }
+        })
+
+
+        function showOrder(n) {
+            for (var i = 0; i < order.length; i++) {
+                if (i === n) {
+                    getJSON("https://apis.netstart.cn/bcomic/ClassPage?styleId=999&areaId=-1&isFinish=-1&order="+ order[i]+"&pageNum=1&pageSize=39&isFree=-1" , function (res) {
+                        manHua.innerHTML = '';
+                        if (res.data) {
+                            res.data.forEach(function (e) {
+                                var node = document.createElement('li');
+                                node.innerHTML = '<img src="' + e.vertical_cover + '"' + '>' + '<p>' + e.title + '</p>' + '<span>' + "[完结] 共" + e.total + "话" + '</span>';
+                                manHua.appendChild(node);
+                            });
+                        }
+                    })
+                }
+            }
+        }
+        showOrder(0)
+        paiXv.forEach(function (e, i) {
+            e.onclick = function () {
+                showOrder(i);
+            }
+        })
+
+    </script> -->
+</body>
+
+</html>

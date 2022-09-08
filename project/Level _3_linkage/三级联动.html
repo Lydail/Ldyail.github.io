@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://cdn.bootcdn.net/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+
+    <style>
+        body {
+            margin: 0;
+        }
+
+        .box {
+            width: 620px;
+            height: 300px;
+            margin: 100px auto;
+            border: 1px solid #ccc;
+            display: flex;
+        }
+
+        ul {
+            list-style: none;
+            margin: 0;
+            padding: 0;
+            /* background-color: lightblue; */
+            width: 200px;
+            height: 300px;
+            text-align: center;
+            overflow: auto;
+        }
+
+        li {
+            padding: 6px 0;
+            outline: 1px solid #ccc;
+            cursor: pointer;
+        }
+
+        li:hover {
+            background-color: rgb(213, 209, 209);
+        }
+    </style>
+</head>
+
+<body>
+    <div class="box">
+        <ul class="sheng"></ul>
+        <ul class="shi"></ul>
+        <ul class="qu"></ul>
+    </div>
+
+    <script>
+
+        var towNum = /\d{2}/g;
+
+        var arr1 = [];
+        var arr2 = [];
+        var arr3 = [];
+
+        var obj = {};
+
+        var str = '';
+
+        function getAndRender() {
+            $.get("./8d930a4a40da18311a5baa0ad3189f51_1_8.json", function (res) {
+                res.forEach(function (e) {
+                    var x = e.match(towNum);
+                    if (x.length == 1) {
+                        obj = e.slice(0, e.length);
+                        arr1.push(obj);
+                    }
+                    if (x.length == 2) {
+                        obj = e.slice(0, e.length);
+                        arr2.push(obj);
+                    }
+                    if (x.length == 3) {
+                        obj = e.slice(0, e.length);
+                        arr3.push(obj);
+                    }
+                });
+
+                $(".sheng").html("");
+                $(".shi").html("");
+                $(".qu").html("");
+                arr1.forEach(function (e) {
+                    $(".sheng").append("<li " + " data-id=" + e.slice(0, 2) + ">" + e.slice(3, e.length) + "</li>");
+                });
+
+                $('.sheng li').click(function () {
+                    str1 = $(this).html() + ' ';
+
+                    $(this).css("background", "#ccc").siblings().css("background", "white");
+                    var arr8 = $(this).data('id');
+                    $(".shi").html("");
+                    $(".qu").html("");
+                    arr2.forEach(function (e) {
+                        if (arr8 == e.slice(0, 2)) {
+                            $(".shi").append("<li " + " data-id=" + e.slice(0, 4) + ">" + e.slice(5, e.length) + "</li>");
+                        }
+                    });
+                    $('.shi li').click(function () {
+                        $(this).css("background", "#ccc").siblings().css("background", "white");
+                        str2 = $(this).html() + ' ';
+                        var arr9 = $(this).data('id');
+                        $(".qu").html("");
+                        arr3.forEach(function (e) {
+                            if (arr9 == e.slice(0, 4)) {
+                                $(".qu").append("<li " + " data-id=" + e.slice(0, 6) + ">" + e.slice(7, e.length) + "</li>");
+                            }
+                        });
+                        $('.qu li').click(function () {
+                            $(this).css("background", "#ccc").siblings().css("background", "white");
+                            str3 = $(this).html();
+                            setTimeout(() => alert(str1 + str2 + str3), 300);
+                        });
+                    });
+                });
+            });
+        }
+        getAndRender();
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>欢迎使用360极速浏览器</title>
+    <link rel="shortcut icon" href="./imgs/favicon.ico" type="image/x-icon">
+    <link rel="stylesheet" href="./reset.css">
+    <link rel="stylesheet" href="./index.css">
+</head>
+
+<body>
+    <div class="swipper swipperSlide">
+        <div class="word-content"></div>
+        <div class="fluent">
+            <div class="fluent-title">
+                <p class="title">畅快浏览 极致体验</p>
+                <p class="test">全新Chrome内核浏览器，性能更强，速度更快</p>
+                <span>
+                    <a href="#">32位版本</a>
+                    <a class="loadnew64" href="#">
+                        <img src="./imgs/window.png" alt="">
+                        64位版本
+                        <i>NEW</i>
+                    </a>
+                </span>
+            </div>
+            <img class="ball ball1" src="./imgs/2.png" alt="">
+            <img class="ball ball2" src="./imgs/3.png" alt="">
+            <img class="ball ball3" src="./imgs/4.png" alt="">
+            <span class="star star1"></span>
+            <span class="star star2"></span>
+            <span class="star star3"></span>
+            <span class="star star4"></span>
+            <span class="star star5"></span>
+            <span class="star star6"></span>
+            <span class="star star7"></span>
+            <span class="star star8"></span>
+        </div>
+    </div>
+
+    <div class="slide-box swipperSlide">
+        <div class="word-content content1">
+            <p class="bigTitleWord">极速</p>
+            <div class="line"></div>
+            <p class="midTitleWord">全新Chromium内核</p>
+            <p class="smaTitleWord">性能强劲，快如闪电。</p>
+            <a class="smallDownloadBtn" href="#"></a>
+        </div>
+        <video autoplay loop muted src="https://s2.ssl.qhres2.com/static/dfeefadde568eab0.mp4">
+        </video>
+    </div>
+
+    <div class="slide-box swipperSlide">
+        <div class="word-content">
+            <p class="bigTitleWord">极酷</p>
+            <div class="line"></div>
+            <p class="midTitleWord">暗夜炫黑模式</p>
+            <p class="smaTitleWord">定义酷，定义你。</p>
+            <a class="smallDownloadBtn" href="#"></a>
+        </div>
+        <video autoplay loop muted src="https://s3.ssl.qhres2.com/static/9bebcedf292f327e.mp4">
+        </video>
+    </div>
+
+    <div class="slide-box swipperSlide">
+        <div class="word-content">
+            <p class="bigTitleWord">极安全</p>
+            <div class="line"></div>
+            <p class="midTitleWord">DNS加密防劫持</p>
+            <p class="smaTitleWord">安全升级，肆意无忌。</p>
+            <a class="smallDownloadBtn" href="#"></a>
+        </div>
+        <video autoplay loop muted src="https://s1.ssl.qhres2.com/static/fdf92889c539303c.mp4">
+        </video>
+    </div>
+
+    <div class="slide-box swipperSlide">
+        <div class="word-content">
+            <p class="bigTitleWord">极视界</p>
+            <div class="line"></div>
+            <p class="midTitleWord">4K高清视频播放</p>
+            <p class="smaTitleWord">还原真实之美 ，尽显万物本色。</p>
+            <a class="smallDownloadBtn" href="#"></a>
+        </div>
+        <video autoplay loop muted src="https://s1.ssl.qhres2.com/static/7e7f0ec4a0cc7a66.mp4">
+        </video>
+    </div>
+
+    <ul class="dots">
+        <!-- <li class="active"></li> -->
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+    </ul>
+    <script>
+
+        var ct1 = document.querySelector('.content1');
+        var dots = document.querySelectorAll('li');
+        var swipperSlide = document.querySelectorAll(".swipperSlide");
+        var contentEl = document.querySelectorAll(".word-content");
+        var bodyEl = document.querySelector('body');
+        var current = 0;
+
+        function showCt(index) {
+            // window.scrollTo(0, index * 754);
+            bodyEl.style.marginTop = -index * 100 + 'vh';
+            bodyEl.style.transition = "all .3s";
+            for (var i = 0; i < swipperSlide.length; i++) {
+                if (index === i) {
+                    contentEl[i].classList.add("active");
+                    dots[i].style.backgroundColor = "white";
+                } else {
+                    contentEl[i].classList.remove("active");
+                    dots[i].style.backgroundColor = "#272727";
+                }
+            }
+            current = index;
+        }
+        showCt(0);
+
+        Array.prototype.slice.call(dots).forEach(function (dot, i) {
+            dot.onmouseenter = function () {
+                showCt(i);
+            }
+        });
+
+        var scrollFunc = function (e) {
+            var e = e || window.event;
+            if (e.deltaY > 0) {
+                current++;
+                if (current >= 5) {
+                    current = 0;
+                }
+                showCt(current);
+            }
+            if (e.deltaY < 0) {
+                current--;
+                if (current < 0) {
+                    current = 4;
+                }
+                showCt(current);
+            }
+        }
+        window.addEventListener("wheel", scrollFunc, { passive: false });
+    </script>
+</body>
+
+</html>

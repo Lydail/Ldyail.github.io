@@ -1,5 +1,6 @@
 body {
     margin: 0;
+    background-color: #72a1bc;
 }
 
 a {
@@ -8,7 +9,8 @@ a {
 }
 
 .player {
-    background: #eef3f7;
+    /* background: hsla(193, 58%, 20%, 0.997); */
+    background-color: #fff;
     width: 400px;
     min-height: 480px;
     box-shadow: 0px 15px 35px -5px rgb(50 88 130 / 32%);
