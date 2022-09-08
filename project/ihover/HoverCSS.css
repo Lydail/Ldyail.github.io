@@ -1,0 +1,1302 @@
+[class^="hvr-"] {
+    display: inline-block;
+    margin: 0.4em;
+    padding: 1em;
+    cursor: pointer;
+    background: #e1e1e1;
+    text-decoration: none;
+    color: #666;
+}
+
+.effects {
+    width: 800px;
+    margin: 0 auto;
+}
+
+h2 {
+    margin-top: 2em;
+}
+
+.hvr-grow {
+    transform: scale(1);
+    transition: all .3s;
+}
+
+.hvr-grow:hover {
+    transform: scale(1.1);
+}
+
+.hvr-shrink {
+    transform: scale(1);
+    transition: all .3s;
+}
+
+.hvr-shrink:hover {
+    transform: scale(.9);
+}
+
+@keyframes hvr-pulse {
+    from {
+        transform: scale(.9);
+    }
+
+    to {
+        transform: scale(1.1);
+    }
+}
+
+.hvr-pulse:hover {
+    animation-name: hvr-pulse;
+    animation-duration: .6s;
+    animation-timing-function: linear;
+    animation-direction: alternate;
+    animation-iteration-count: infinite;
+}
+
+@keyframes hvr-pulse-grow {
+    from {
+        transform: scale(1);
+    }
+
+    to {
+        transform: scale(1.1);
+    }
+}
+
+.hvr-pulse-grow:hover {
+    animation-name: hvr-pulse-grow;
+    animation-duration: .3s;
+    animation-timing-function: linear;
+    animation-direction: alternate;
+    animation-iteration-count: infinite;
+}
+
+@keyframes hvr-pulse-shrink {
+    from {
+        transform: scale(1);
+    }
+
+    to {
+        transform: scale(0.9);
+    }
+}
+
+.hvr-pulse-shrink:hover {
+    animation-name: hvr-pulse-shrink;
+    animation-duration: .3s;
+    animation-timing-function: linear;
+    animation-direction: alternate;
+    animation-iteration-count: infinite;
+}
+
+@keyframes hvr-push {
+    0% {
+        transform: scale(1);
+    }
+
+    50% {
+        transform: scale(0.8);
+    }
+
+    100% {
+        transform: scale(1);
+    }
+}
+
+.hvr-push:hover {
+    animation-name: hvr-push;
+    animation-duration: .3s;
+    animation-timing-function: linear;
+}
+
+@keyframes hvr-pop {
+    0% {
+        transform: scale(1);
+    }
+
+    50% {
+        transform: scale(1.2);
+    }
+
+    100% {
+        transform: scale(1);
+    }
+}
+
+.hvr-pop:hover {
+    animation-name: hvr-pop;
+    animation-duration: .3s;
+    animation-timing-function: linear;
+}
+
+@keyframes hvr-bounceIn {
+    0% {
+        transform: scale(1);
+    }
+
+    33% {
+        transform: scale(1.2);
+    }
+
+    66% {
+        transform: scale(1.1);
+    }
+
+    100% {
+        transform: scale(1.2);
+    }
+
+}
+
+.hvr-bounceIn:hover {
+    animation-name: hvr-bounceIn;
+    animation-duration: .8s;
+    animation-fill-mode: forwards;
+}
+
+@keyframes hvr-bounceOut {
+    0% {
+        transform: scale(1);
+    }
+
+    33% {
+        transform: scale(.8);
+    }
+
+    66% {
+        transform: scale(.9);
+    }
+
+    100% {
+        transform: scale(.8);
+    }
+
+}
+
+.hvr-bounceOut:hover {
+    animation-name: hvr-bounceOut;
+    animation-duration: .8s;
+    animation-fill-mode: forwards;
+}
+
+.hvr-rotate {
+    transition: all .3s;
+}
+
+.hvr-rotate:hover {
+    transform: rotate(5deg);
+    transition: all .3s;
+}
+
+.hvr-growRotate {
+    transition: all .3s;
+    transform: scale(1);
+}
+
+.hvr-growRotate:hover {
+    transition: all .3s;
+    transform: rotate(5deg) scale(1.1);
+}
+
+.hvr-float {
+    transition: all .3s;
+    position: relative;
+    top: 0;
+}
+
+.hvr-float:hover {
+    top: -10px;
+    transition: all .3s;
+}
+
+.hvr-sink {
+    position: relative;
+    top: 0;
+    transition: all .3s;
+}
+
+.hvr-sink:hover {
+    top: 10px;
+    transition: all .3s;
+}
+
+@keyframes hvr-bob {
+    0% {
+        top: 0;
+    }
+
+    50% {
+        top: -10px;
+    }
+
+    100% {
+        top: 0;
+    }
+}
+
+.hvr-bob:hover {
+    position: relative;
+    animation-name: hvr-bob;
+    animation-duration: 2s;
+    animation-timing-function: linear;
+    animation-fill-mode: forwards;
+    animation-iteration-count: infinite;
+}
+
+@keyframes hvr-hang {
+    0% {
+        top: 0px;
+    }
+
+    50% {
+        top: 10px;
+    }
+
+    100% {
+        top: 0;
+    }
+}
+
+.hvr-hang:hover {
+    position: relative;
+    animation-name: hvr-hang;
+    animation-duration: 2s;
+    animation-timing-function: linear;
+    animation-fill-mode: forwards;
+    animation-iteration-count: infinite;
+}
+
+.hvr-skew {
+    transition: all .3s;
+}
+
+.hvr-skew:hover {
+    transform: skew(-10deg);
+}
+
+
+@keyframes hvr-skewForward {
+    from {
+        transform: skew(0deg);
+        transform-origin: bottom;
+    }
+    to {
+        transform: skew(-10deg);
+        transform-origin: bottom;
+    }
+}
+.hvr-skewForward:hover {
+    animation-name: hvr-skewForward;
+    animation-duration: .5s;
+    animation-fill-mode: forwards;
+}
+
+
+@keyframes hvr-skewBackward {
+    from {
+        transform: skew(0deg);
+        transform-origin: bottom;
+    }
+    to {
+        transform: skew(10deg);
+        transform-origin: bottom;
+    }
+}
+.hvr-skewBackward:hover {
+    animation-name: hvr-skewBackward;
+    animation-duration: .5s;
+    animation-fill-mode: forwards;
+}
+
+
+@keyframes hvr-wobbleHorizontal {
+    0% {
+        left: 0px;
+    }
+
+    20% {
+        left: 5px;
+    }
+
+    40% {
+        left: -5px;
+    }
+
+    60% {
+        left: 5px;
+    }
+
+    80% {
+        left: -5px;
+    }
+    100% {
+        left: 0px;
+    }
+}
+.hvr-wobbleHorizontal:hover {
+    position: relative;
+    animation-name: hvr-wobbleHorizontal;
+    animation-duration: .6s;
+    animation-timing-function: linear;
+}
+
+@keyframes hvr-wobbleVertical {
+    0% {
+        top: 0px;
+    }
+
+    20% {
+        top: 5px;
+    }
+
+    40% {
+        top: -5px;
+    }
+
+    60% {
+        top: 5px;
+    }
+
+    80% {
+        top: -5px;
+    }
+    100% {
+        top: 0px;
+    }
+}
+.hvr-wobbleVertical:hover {
+    position: relative;
+    animation-name: hvr-wobbleVertical;
+    animation-duration: 1s;
+    animation-timing-function: linear;
+}
+
+@keyframes hvr-wobbleToBootomRight {
+    0% {
+        top: 0px;
+        left: 0px;
+    }
+
+    20% {
+        top: 10px;
+        left: 10px;
+    }
+
+    40% {
+        top: -5px;
+        left: -5px;
+    }
+
+    60% {
+        top: 10px;
+        left: 10px;
+    }
+
+    80% {
+        top: -5px;
+        left: -5px;
+    }
+    100% {
+        top: 0px;
+        left: 0;
+    }
+}
+.hvr-wobbleToBootomRight:hover {
+    position: relative;
+    animation-name: hvr-wobbleToBootomRight;
+    animation-duration: .8s;
+    animation-timing-function: linear;
+}
+
+@keyframes hvr-wobbleToTopRight {
+    0% {
+        top: 0px;
+        left: 0px;
+    }
+
+    20% {
+        top: -10px;
+        left: 10px;
+    }
+
+    40% {
+        top: 5px;
+        left: -5px;
+    }
+
+    60% {
+        top: -10px;
+        left: 10px;
+    }
+
+    80% {
+        top: 5px;
+        left: -5px;
+    }
+    100% {
+        top: 0px;
+        left: 0;
+    }
+}
+.hvr-wobbleToTopRight:hover {
+    position: relative;
+    animation-name: hvr-wobbleToTopRight;
+    animation-duration: .8s;
+    animation-timing-function: linear;
+}
+
+
+@keyframes hvr-wobbleTop {
+    0% {
+        transform: skew(0deg);
+    }
+
+    20% {
+        transform: skew(-10deg);
+    }
+
+    40% {
+        transform: skew(10deg);
+    }
+
+    60% {
+        transform: skew(-10deg);
+    }
+
+    80% {
+        transform: skew(10deg);
+    }
+    100% {
+        transform: skew(0deg);
+    }
+}
+.hvr-wobbleTop:hover {
+    position: relative;
+    animation-name: hvr-wobbleTop;
+    animation-duration: .8s;
+    animation-timing-function: linear;
+    transform-origin: bottom;
+}
+
+@keyframes hvr-wobbleBootom {
+    0% {
+        transform: skew(0deg);
+    }
+
+    20% {
+        transform: skew(-10deg);
+    }
+
+    40% {
+        transform: skew(10deg);
+    }
+
+    60% {
+        transform: skew(-10deg);
+    }
+
+    80% {
+        transform: skew(10deg);
+    }
+    100% {
+        transform: skew(0deg);
+    }
+}
+.hvr-wobbleBootom:hover {
+    position: relative;
+    animation-name: hvr-wobbleBootom;
+    animation-duration: .8s;
+    animation-timing-function: linear;
+    transform-origin: top;
+}
+
+@keyframes hvr-wobbleSkew {
+    0% {
+        transform: skew(0deg);
+    }
+
+    20% {
+        transform: skew(-10deg);
+    }
+
+    40% {
+        transform: skew(10deg);
+    }
+
+    60% {
+        transform: skew(-10deg);
+    }
+
+    80% {
+        transform: skew(10deg);
+    }
+    100% {
+        transform: skew(0deg);
+    }
+}
+.hvr-wobbleSkew:hover {
+    position: relative;
+    animation-name: hvr-wobbleSkew;
+    animation-duration: .8s;
+    animation-timing-function: linear;
+    transform-origin: center;
+}
+
+@keyframes hvr-buzz {
+    0% {
+        transform: translate(2px, 2px);
+    }
+
+    20% {
+        transform: translate(-2px, -2px);
+    }
+
+    40% {
+        transform: translate(2px, 2px);
+    }
+
+    60% {
+        transform: translate(-2px, -2px);
+    }
+
+    80% {
+        transform: translate(2px, 2px);
+    }
+    100% {
+        transform: translate(0px, 0px);
+    }
+}
+.hvr-buzz:hover {
+    position: relative;
+    animation-name: hvr-buzz;
+    animation-duration: .3s;
+    animation-timing-function: linear;
+    animation-iteration-count: infinite;
+}
+
+@keyframes hvr-buzzOut {
+    0% {
+        transform: skew(10deg);
+        transform-origin: 20% 70%;
+    }
+
+    20% {
+        transform: skew(-10deg);
+        transform-origin: 20% 70%;
+    }
+
+    40% {
+        transform: skew(10deg);
+        transform-origin: 20% 70%;
+    }
+
+    60% {
+        transform: skew(-10deg);
+        transform-origin: 20% 70%;
+    }
+
+    80% {
+        transform: skew(10deg);
+        transform-origin: 20% 70%;
+    }
+    100% {
+        transform: skew(0deg);
+        transform-origin: 20% 70%;
+    }
+}
+.hvr-buzzOut:hover {
+    position: relative;
+    animation-name: hvr-buzzOut;
+    animation-duration: .3s;
+    animation-timing-function: linear;
+}
+
+
+.hvr-forward {
+    position: relative;
+    left: 0;
+    transition: all .3s;
+}
+.hvr-forward:hover {
+    left: 10px;
+    transition: all .3s;
+}
+
+.hvr-backward {
+    position: relative;
+    right: 0;
+    transition: all .3s;
+}
+.hvr-backward:hover {
+    right: 10px;
+    transition: all .3s;
+}
+
+
+.hvr-fade {
+    transition: all .3s;
+}
+.hvr-fade:hover {
+    color: white;
+    background-color: #2098d1;
+    transition: all .3s;
+}
+
+@keyframes hvr-backPulse {
+    0% {
+        background-color: #e1e1e1;
+    }
+    33% {
+        background-color: #2098d1;
+    }
+    66% {
+        background-color: #2099d1af;
+    }
+    100% {
+        background-color: #49abd9;
+    }
+}
+.hvr-backPulse:hover {
+    color:white;
+    animation-name: hvr-backPulse;
+    animation-duration: 2s;
+    animation-timing-function: linear;
+    animation-direction: alternate;
+    animation-fill-mode: forwards;
+    animation-iteration-count: infinite;
+}
+
+@keyframes hvr-SweepToRight {
+    from {
+        width: 0;
+    }
+    to {
+        width: 100%;
+    }
+}
+.hvr-SweepToRight {
+    position: relative;
+    z-index: 9;
+    transition: all .3s;
+}
+.hvr-SweepToRight:hover {
+    color: white;
+}
+.hvr-SweepToRight::before {
+    content: "";
+    height: 100%;
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: -1;
+}
+.hvr-SweepToRight:hover::before {
+    background: #2098D1;
+    animation-name: hvr-SweepToRight;
+    animation-duration: .3s;
+    animation-timing-function: linear;
+    animation-fill-mode: forwards;
+}
+
+@keyframes hvr-SweepToLeft {
+    from {
+        width: 0;
+    }
+    to {
+        width: 100%;
+    }
+}
+.hvr-SweepToLeft {
+    position: relative;
+    z-index: 9;
+    transition: all .3s;
+}
+.hvr-SweepToLeft:hover {
+    color: white;
+}
+.hvr-SweepToLeft::after {
+    content: "";
+    height: 100%;
+    position: absolute;
+    top: 0;
+    right: 0;
+    z-index: -1;
+}
+.hvr-SweepToLeft:hover::after {
+    background: #2098D1;
+    animation-name: hvr-SweepToLeft;
+    animation-duration: .3s;
+    animation-timing-function: linear;
+    animation-fill-mode: forwards;
+}
+
+
+@keyframes hvr-SweepToBottom {
+    from {
+        height: 0;
+    }
+    to {
+        height: 100%;
+    }
+}
+.hvr-SweepToBottom {
+    position: relative;
+    z-index: 9;
+    transition: all .3s;
+}
+.hvr-SweepToBottom:hover {
+    color: white;
+}
+.hvr-SweepToBottom::after {
+    content: "";
+    width: 100%;
+    position: absolute;
+    top: 0;
+    right: 0;
+    z-index: -1;
+}
+.hvr-SweepToBottom:hover::after {
+    background: #2098D1;
+    animation-name: hvr-SweepToBottom;
+    animation-duration: .3s;
+    animation-timing-function: linear;
+    animation-fill-mode: forwards;
+}
+
+@keyframes hvr-SweepToTop {
+    from {
+        height: 0;
+    }
+    to {
+        height: 100%;
+    }
+}
+.hvr-SweepToTop {
+    position: relative;
+    z-index: 9;
+    transition: all .3s;
+}
+.hvr-SweepToTop:hover {
+    color: white;
+}
+.hvr-SweepToTop::after {
+    content: "";
+    width: 100%;
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    z-index: -1;
+}
+.hvr-SweepToTop:hover::after {
+    background: #2098D1;
+    animation-name: hvr-SweepToTop;
+    animation-duration: .3s;
+    animation-timing-function: linear;
+    animation-fill-mode: forwards;
+}
+
+
+@keyframes hvr-BounceToRight {
+    0% {
+        width: 0;
+    }
+    33.33% {
+        width: 100%;
+    }
+    66.66% {
+        width: 90%;
+    }
+    100% {
+        width: 100%;
+    }
+}
+.hvr-BounceToRight {
+    position: relative;
+    z-index: 9;
+    transition: all .3s;
+}
+.hvr-BounceToRight:hover {
+    color: white;
+}
+.hvr-BounceToRight::before {
+    content: "";
+    height: 100%;
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: -1;
+}
+.hvr-BounceToRight:hover::before {
+    background: #2098D1;
+    animation-name: hvr-BounceToRight;
+    animation-duration: .6s;
+    animation-timing-function: linear;
+    animation-fill-mode: forwards;
+}
+
+@keyframes hvr-BounceToLeft {
+    0% {
+        width: 0;
+    }
+    33.33% {
+        width: 100%;
+    }
+    66.66% {
+        width: 90%;
+    }
+    100% {
+        width: 100%;
+    }
+}
+.hvr-BounceToLeft {
+    position: relative;
+    z-index: 9;
+    transition: all .3s;
+}
+.hvr-BounceToLeft:hover {
+    color: white;
+}
+.hvr-BounceToLeft::before {
+    content: "";
+    height: 100%;
+    position: absolute;
+    top: 0;
+    right: 0;
+    z-index: -1;
+}
+.hvr-BounceToLeft:hover::before {
+    background: #2098D1;
+    animation-name: hvr-BounceToLeft;
+    animation-duration: .6s;
+    animation-timing-function: linear;
+    animation-fill-mode: forwards;
+}
+
+
+@keyframes hvr-BounceToBottom {
+    0% {
+        height: 0;
+    }
+    33.33% {
+        height: 100%;
+    }
+    66.66% {
+        height: 90%;
+    }
+    100% {
+        height: 100%;
+    }
+}
+.hvr-BounceToBottom {
+    position: relative;
+    z-index: 9;
+    transition: all .3s;
+}
+.hvr-BounceToBottom:hover {
+    color: white;
+}
+.hvr-BounceToBottom::before {
+    content: "";
+    width: 100%;
+    position: absolute;
+    top: 0;
+    right: 0;
+    z-index: -1;
+}
+.hvr-BounceToBottom:hover::before {
+    background: #2098D1;
+    animation-name: hvr-BounceToBottom;
+    animation-duration: .6s;
+    animation-timing-function: linear;
+    animation-fill-mode: forwards;
+}
+
+
+@keyframes hvr-BounceToTop {
+    0% {
+        height: 0;
+    }
+    33.33% {
+        height: 100%;
+    }
+    66.66% {
+        height: 90%;
+    }
+    100% {
+        height: 100%;
+    }
+}
+.hvr-BounceToTop {
+    position: relative;
+    z-index: 9;
+    transition: all .3s;
+}
+.hvr-BounceToTop:hover {
+    color: white;
+}
+.hvr-BounceToTop::before {
+    content: "";
+    width: 100%;
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    z-index: -1;
+}
+.hvr-BounceToTop:hover::before {
+    background: #2098D1;
+    animation-name: hvr-BounceToTop;
+    animation-duration: .6s;
+    animation-timing-function: linear;
+    animation-fill-mode: forwards;
+}
+
+
+@keyframes hvr-RadialOut {
+    0% {
+        transform: scale(0);
+        border-radius: 50%;
+    }
+    50% {
+        transform: scale(.5);
+        border-radius: 50%;
+    }
+    100% {
+        transform: scale(1);
+        border-radius: 0;
+    }
+}
+.hvr-RadialOut {
+    position: relative;
+    z-index: 9;
+    transition: all .3s;
+}
+.hvr-RadialOut:hover {
+    color: white;
+}
+.hvr-RadialOut::before {
+    content: "";
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    top: 0;
+    right: 0;
+    z-index: -1;
+}
+.hvr-RadialOut:hover::before {
+    background: #2098D1;
+    animation-name: hvr-RadialOut;
+    animation-duration: .3s;
+    animation-timing-function: linear;
+    animation-fill-mode: forwards;
+}
+
+
+@keyframes hvr-RadialIn {
+    0% {
+        transform: scale(1);
+        border-radius: 0;
+    }
+    50% {
+        transform: scale(.5);
+        border-radius: 100%;
+    }
+    100% {
+        transform: scale(0);
+        border-radius: 100%;
+    }
+}
+.hvr-RadialIn {
+    position: relative;
+    background: #2098D1;
+    z-index: 9;
+    overflow: hidden;
+    vertical-align: middle;
+    transition: all .3s;
+}
+.hvr-RadialIn:hover {
+    color: white;
+}
+.hvr-RadialIn::before {
+    content: "";
+    position: absolute;
+    z-index: -1;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: #e1e1e1;
+    border-radius: 100%;
+    transform: scale(2);
+}
+.hvr-RadialIn:hover::before {
+    animation-name: hvr-RadialIn;
+    animation-duration: .3s;
+    animation-timing-function: linear;
+    animation-fill-mode: forwards;
+}
+
+
+@keyframes hvr-RectangleIn {
+    0% {
+        transform: scale(1);
+    }
+    50% {
+        transform: scale(.5);
+    }
+    100% {
+        transform: scale(0);
+    }
+}
+.hvr-RectangleIn {
+    position: relative;
+    background: #2098D1;
+    z-index: 9;
+    overflow: hidden;
+    vertical-align: middle;
+    transition: all .3s;
+}
+.hvr-RectangleIn:hover {
+    color: white;
+}
+.hvr-RectangleIn::before {
+    content: "";
+    position: absolute;
+    z-index: -1;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: #e1e1e1;
+    transform: scale(2);
+}
+.hvr-RectangleIn:hover::before {
+    animation-name: hvr-RectangleIn;
+    animation-duration: .3s;
+    animation-timing-function: linear;
+    animation-fill-mode: forwards;
+}
+
+
+@keyframes hvr-RectangleOut {
+    0% {
+        transform: scale(0);
+    }
+    50% {
+        transform: scale(.5);
+    }
+    100% {
+        transform: scale(1);
+    }
+}
+.hvr-RectangleOut {
+    position: relative;
+    
+    z-index: 9;
+    overflow: hidden;
+    vertical-align: middle;
+    transition: all .3s;
+}
+.hvr-RectangleOut:hover {
+    color: white;
+}
+.hvr-RectangleOut::before {
+    content: "";
+    position: absolute;
+    z-index: -1;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    transform: scale(1);
+}
+.hvr-RectangleOut:hover::before {
+    background: #2098D1;
+    animation-name: hvr-RectangleOut;
+    animation-duration: .3s;
+    animation-timing-function: linear;
+    animation-fill-mode: forwards;
+}
+
+
+@keyframes hvr-ShutterInHZ-left {
+    from {
+        width: 0;
+    }
+    to {
+        width: 100%;
+    }
+}
+.hvr-ShutterInHZ {
+    position: relative;
+    z-index: 9;
+    transition: all .3s;
+}
+.hvr-ShutterInHZ:hover {
+    color: white;
+}
+.hvr-ShutterInHZ::after {
+    content: "";
+    height: 100%;
+    position: absolute;
+    top: 0;
+    right: 0;
+    z-index: -1;
+}
+.hvr-ShutterInHZ:hover::after {
+    background: #2098D1;
+    animation-name: hvr-ShutterInHZ-left;
+    animation-duration: .6s;
+    animation-timing-function: linear;
+    animation-fill-mode: forwards;
+}
+@keyframes hvr-ShutterInHZ-right {
+    from {
+        width: 0;
+    }
+    to {
+        width: 100%;
+    }
+}
+.hvr-ShutterInHZ {
+    position: relative;
+    z-index: 9;
+    transition: all .3s;
+}
+.hvr-ShutterInHZ:hover {
+    color: white;
+}
+.hvr-ShutterInHZ::before {
+    content: "";
+    height: 100%;
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: -1;
+}
+.hvr-ShutterInHZ:hover::before {
+    background: #2098D1;
+    animation-name: hvr-ShutterInHZ-right;
+    animation-duration: .6s;
+    animation-timing-function: linear;
+    animation-fill-mode: forwards;
+}
+
+
+@keyframes hvr-ShutterOutHZ{
+    from {
+        width: 0;
+    }
+    to {
+        width: 50%;
+    }
+}
+.hvr-ShutterOutHZ {
+    position: relative;
+    z-index: 9;
+    transition: all .3s;
+}
+.hvr-ShutterOutHZ:hover {
+    color: white;
+}
+.hvr-ShutterOutHZ::after,.hvr-ShutterOutHZ::before {
+    content: "";
+    height: 100%;
+    position: absolute;
+    top: 0;
+    z-index: -1;
+}
+.hvr-ShutterOutHZ::before {
+    right: 50%;
+}
+.hvr-ShutterOutHZ::after {
+    left: 50%;
+}
+.hvr-ShutterOutHZ:hover::after,.hvr-ShutterOutHZ:hover::before {
+    background: #2098D1;
+}
+.hvr-ShutterOutHZ:hover::after,.hvr-ShutterOutHZ:hover::before {
+    animation-name: hvr-ShutterOutHZ;
+    animation-duration: .3s;
+    animation-timing-function: linear;
+    animation-fill-mode: forwards;
+}
+
+
+@keyframes hvr-ShutterInVT{
+    from {
+        height: 0;
+    }
+    to {
+        height: 50%;
+    }
+}
+.hvr-ShutterInVT {
+    position: relative;
+    z-index: 9;
+    transition: all .3s;
+}
+.hvr-ShutterInVT:hover {
+    color: white;
+}
+.hvr-ShutterInVT::after,.hvr-ShutterInVT::before {
+    content: "";
+    width: 100%;
+    position: absolute;
+    left: 0;
+    z-index: -1;
+}
+.hvr-ShutterInVT::before {
+    top: 0;
+}
+.hvr-ShutterInVT::after {
+    bottom: 0;
+}
+.hvr-ShutterInVT:hover::after,.hvr-ShutterInVT:hover::before {
+    background: #2098D1;
+}
+.hvr-ShutterInVT:hover::after,.hvr-ShutterInVT:hover::before {
+    animation-name: hvr-ShutterInVT;
+    animation-duration: .3s;
+    animation-timing-function: linear;
+    animation-fill-mode: forwards;
+}
+
+
+@keyframes hvr-ShutterOutVT{
+    from {
+        height: 0;
+    }
+    to {
+        height: 50%;
+    }
+}
+.hvr-ShutterOutVT {
+    position: relative;
+    z-index: 9;
+    transition: all .3s;
+}
+.hvr-ShutterOutVT:hover {
+    color: white;
+}
+.hvr-ShutterOutVT::after,.hvr-ShutterOutVT::before {
+    content: "";
+    width: 100%;
+    position: absolute;
+    left: 0;
+    z-index: -1;
+}
+.hvr-ShutterOutVT::before {
+    top: 50%;
+}
+.hvr-ShutterOutVT::after {
+    bottom: 50%;
+}
+.hvr-ShutterOutVT:hover::after,.hvr-ShutterOutVT:hover::before {
+    background: #2098D1;
+}
+.hvr-ShutterOutVT:hover::after,.hvr-ShutterOutVT:hover::before {
+    animation-name: hvr-ShutterOutVT;
+    animation-duration: .3s;
+    animation-timing-function: linear;
+    animation-fill-mode: forwards;
+}

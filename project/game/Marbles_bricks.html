@@ -1,0 +1,229 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        body {
+            margin: 0;
+            background-color: black;
+        }
+        
+
+
+        .stage {
+            width: 1000px;
+            height: 650px;
+            background-color: black;
+            position: relative;
+            overflow: hidden;
+            margin: 0 auto;
+            outline: 1px solid white;
+        }
+
+        .brickBox {
+            width: 990px;
+            height: 288px;
+            position: absolute;
+            top: 0;
+            left: 0;
+            box-sizing: border-box;
+            margin: 5px;
+        }
+
+        .brickBox>div {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 90px;
+            height: 24px;
+            box-sizing: border-box;
+        }
+
+        .stage .ball {
+            display: block;
+            width: 20px;
+            height: 20px;
+            position: absolute;
+            top: 0;
+            left: 0;
+            background-color: white;
+            border-radius: 50%;
+        }
+
+        .stage .slider {
+            width: 80px;
+            height: 8px;
+            background-color: gold;
+            position: absolute;
+            bottom: 30px;
+            left: 50%;
+            margin-left: -40px;
+        }
+        .count {
+            position: absolute;
+            bottom: 0;
+            right: 0;
+            color: white;
+            font-size: 20px;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="stage">
+        <div class="brickBox"></div>
+        <span class="ball"></span>
+        <span class="slider"></span>
+        <span class="count"></span>
+    </div>
+
+    <script>
+        var stage = document.querySelector(".stage");
+        var brickBox = document.querySelector('.brickBox');
+        var ball = document.querySelector(".ball");
+        var slider = document.querySelector(".slider");
+        var countEl = document.querySelector(".count");
+        var count = 0;
+        // 动态创建砖块
+        // 定义砖块大小
+        var brickWidth = 90;
+        var brickHeight = 24;
+        // 计算砖块数量
+        var brickNum = brickBox.clientWidth * brickBox.clientHeight / (brickWidth * brickHeight)
+        var brickColNum = brickBox.clientWidth / brickWidth;
+        // 封装设置样式的函数
+        function setStyle(ele, styleObj) {
+            for (var attr in styleObj) {
+                ele.style[attr] = styleObj[attr];
+            }
+        }
+        // 根据数量去创建
+        for (var i = 0; i < brickNum; i++) {
+            var div = document.createElement('div')
+            setStyle(div, {
+                width: brickWidth + "px",
+                height: brickHeight + "px",
+                backgroundColor: "black",
+                border: 1 + "px " + "solid " + "white",
+                position: 'absolute',
+                top: parseInt(i / brickColNum) * brickHeight + 'px',
+                left: (i % brickColNum) * brickWidth + 'px'
+            })
+            brickBox.appendChild(div)
+        }
+
+        // 球   构造器
+        function Ball(x, y, xspeed, yspeed) {
+            // this.node = document.querySelector(".ball");
+            this.x = x;
+            this.y = y;
+            this.xspeed = xspeed;
+            this.yspeed = yspeed;
+        }
+
+        // 球的位置
+        Ball.prototype.update = function () {
+            ball.style.top = this.y + "px";
+            ball.style.left = this.x + "px";
+        }
+
+        // 设定 球在指定范围内移动
+        Ball.prototype.check = function () {
+            var rCollision = this.x + 20 > 1000;
+            var lCollision = this.x < 0;
+
+            var bCollision = this.y + 20 > 650;
+            var tCollision = this.y < 0;
+            if (rCollision || lCollision) {
+                this.xspeed = -this.xspeed;
+            }
+            if (bCollision || tCollision) {
+                this.yspeed = -this.yspeed;
+            }
+            if (bCollision) {
+                alert("游戏结束，请重新开始");
+                location.reload();
+            }
+        }
+
+        // 相撞的函数
+        function boom(node1, node2) {
+            var n1Left = node1.offsetLeft;
+            var n1Width = node1.offsetWidth;
+            var n1Top = node1.offsetTop;
+            var n1Height = node1.offsetHeight;
+            var n2Left = node2.offsetLeft;
+            var n2Width = node2.offsetWidth;
+            var n2Top = node2.offsetTop;
+            var n2Height = node2.offsetHeight;
+            // 不撞在一起的只有4中可能
+            if (n1Left + n1Width < n2Left || n1Top + n1Height < n2Top || n2Left + n2Width < n1Left || n2Top + n2Height < n1Top) {
+                return false;
+            } else {
+                return true;
+            }
+        }
+
+        // 球和滑块碰撞
+        // 设置球移动
+        Ball.prototype.move = function () {
+            this.check();
+            this.x += this.xspeed;
+            this.y += this.yspeed;
+
+            this.update();
+
+            // 小球和滑块相撞
+            if (boom(slider, ball)) {
+                this.yspeed = -this.yspeed;
+            }
+            // 检测所有砖块和小球是否相撞
+            for (let i = 0; i < brickBox.children.length; i++) {
+                if (boom(brickBox.children[i], ball)) {
+                    this.yspeed = -this.yspeed;
+                    brickBox.removeChild(brickBox.children[i]);
+                    count++;
+                }
+            }
+            // console.log(count);
+            countEl.innerHTML = count;
+        }
+
+        var b = new Ball(0, 600, 2, -4);
+
+        setInterval(function () {
+            b.move();
+        }, 1000 / 60);
+
+
+        // 滑块
+        // 获取stage盒子的宽
+        var stageWidth = stage.offsetWidth;
+
+        // 获取板的宽
+        var sliderWidth = slider.offsetWidth;
+
+        // slider盒子的左上角到浏览器的距离----8px
+        var offsetLeft = stage.offsetLeft;
+
+        stage.onmousemove = function () {
+            // 鼠标指针的坐标
+            var mx = event.pageX - offsetLeft + (sliderWidth / 2);
+            // console.log(mx,my);
+
+            // slider盒子左上角的坐标
+            var sliderX = mx - sliderWidth / 2;
+
+            // slider盒子跟着鼠标走
+            slider.style.left = sliderX + 'px';
+        }
+
+
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,503 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        body {
+            margin: 0;
+        }
+
+        .wrapper {
+            width: 100%;
+            margin: 0 auto;
+            display: flex;
+            flex-wrap: wrap;
+        }
+
+        input {
+            margin: 0;
+            padding: 0;
+        }
+
+        .toggle-wrapper {
+            width: 33.33%;
+            height: 475px;
+            display: flex;
+            
+            align-items: center;
+            justify-content: center;
+        }
+
+        .one {
+            background-color: #dec387;
+        }
+
+        .toggle {
+            position: relative;
+            display: inline-block;
+        }
+
+        input {
+            width: 120px;
+            height: 40px;
+            position: absolute;
+            top: 0px;
+            left: 0px;
+            z-index: 9;
+            opacity: 0;
+            cursor: pointer;
+        }
+
+        label {
+            width: 120px;
+            height: 40px;
+            position: relative;
+            display: inline-block;
+            background: #af4c4c;
+            border-radius: 30px;
+            border: 0.5px solid rgba(117, 117, 117, 0.31);
+            box-shadow: inset 0px 0px 4px 0px rgb(0 0 0 / 20%), 0 -3px 4px rgb(0 0 0 / 15%);
+            transition: all .6s;
+        }
+
+        .ball {
+            width: 30px;
+            height: 30px;
+            position: absolute;
+            top: 5px;
+            left: 6px;
+            background-color: white;
+            border-radius: 50%;
+            transition: all .6s;
+        }
+
+        .bg {
+            width: 100%;
+            height: 100%;
+            position: absolute;
+            top: 0;
+            left: 0;
+            border-radius: 30px;
+        }
+
+        input:checked+label .slide {
+            left: calc(120px - 36px);
+        }
+
+        input:checked+.slide-box {
+            background-color: #4caf50;
+        }
+
+        .two {
+            background-color: #87aade;
+        }
+
+        .check-box {
+            background-color: #2e394d;
+        }
+
+        .check {
+            background-color: #8bc34a;
+            position: relative;
+        }
+
+        .check::before {
+            content: '';
+            width: 20px;
+            height: 2px;
+            position: absolute;
+            top: 0;
+            left: 0;
+            background-color: #fff;
+            border-radius: 10px;
+            transform: rotate(306deg) translate(-6px, 13px);
+        }
+
+        .check::after {
+            content: '';
+            width: 10px;
+            height: 2px;
+            position: absolute;
+            top: 0;
+            left: 0;
+            background-color: #fff;
+            border-radius: 10px;
+            transform: rotate(45deg) translate(15px, 10px);
+        }
+
+        input:checked+label .check {
+            left: calc(120px - 36px);
+        }
+
+        input:checked+.check-box .check {
+            transform: rotate(360deg);
+            background-color: #c34a4a;
+        }
+
+        input:checked+.check-box .check::before {
+            width: 20px;
+            transform: rotate(-45deg) translate(-7px, 15px);
+        }
+
+        input:checked+.check-box .check::after {
+            width: 20px;
+            transform: rotate(45deg) translate(15px, 7px);
+        }
+
+        .three {
+            background-color: #de8787;
+        }
+
+        .basketball-box {
+            background-color: #fdb827;
+        }
+
+        .ball-wrapper {
+            transition: 0.4s ease;
+            width: 182%;
+            height: 200%;
+            transform-origin: 50% -2%;
+            /* transform: rotate(150deg) translateX(0px) translateY(-8px); */
+        }
+
+        .basketball {
+            top: 3px;
+            border: 2px solid black;
+            background: #FF9800;
+            background-image: radial-gradient(circle at -5px 10px, transparent 15px, black 15px, black 17px, transparent 17px), radial-gradient(circle at 41px 25px, transparent 15px, black 15px, black 17px, transparent 17px), linear-gradient(110deg, transparent 22px, black 22px, black 24px, transparent 24px), linear-gradient(18deg, transparent 22px, black 22px, black 24px, transparent 24px);
+        }
+
+        .hoop {
+            top: -50px;
+            right: -84px;
+            width: 50px;
+            background: #f44336;
+            height: 8px;
+            position: absolute;
+        }
+
+        .hoop:before {
+            content: '';
+            position: absolute;
+            right: -4px;
+            width: 7px;
+            height: 60px;
+            background: #cd2e22;
+            top: -40px;
+        }
+
+        .hoop:after {
+            content: '';
+            width: 40px;
+            height: 35px;
+            position: absolute;
+            background: repeating-linear-gradient(45deg, transparent, transparent 13px, white 13px, white 15px),
+                repeating-linear-gradient(-45deg, transparent, transparent 13px, white 13px, white 15px);
+            top: 8px;
+            border-radius: 0 0 20% 20%/40% 40% 60% 60%;
+            border: 2px solid #fff;
+            border-width: 0 2px;
+            left: 2px;
+            z-index: 20;
+        }
+
+        @keyframes ball-wrapper {
+            0% {
+                transform: none;
+            }
+
+            40%,
+            100% {
+                transform: rotate(150deg);
+            }
+        }
+
+        input:checked+label .ball-wrapper {
+            animation: 1.5s linear ball-wrapper forwards;
+        }
+
+        @keyframes ball {
+            0% {
+                transform: none;
+            }
+            40% {
+                transform: rotate(-150deg);
+            }
+            48% {
+                transform: rotate(-150deg) translateY(92px);
+            }
+            52% {
+                transform: rotate(-150deg) translate(-10px, 83px);
+            }
+            56% {
+                transform: rotate(-150deg) translate(-25px, 83px);
+            }
+            60% {
+                transform: rotate(-150deg) translate(-35px, 84px);
+            }
+            65% {
+                transform: rotate(-150deg) translate(-45px, 80px);
+            }
+            70% {
+                transform: rotate(-150deg) translate(-50px, 83px);
+            }
+            75% {
+                transform: rotate(-150deg) translate(-60px, 80px);
+            }
+            80% {
+                transform: rotate(-150deg) translate(-65px, 85px);
+            }
+            85% {
+                transform: rotate(-150deg) translate(-70px, 80px);
+            }
+            90% {
+                transform: rotate(-150deg) translate(-72px, 84px);
+            }
+            95% {
+                transform: rotate(-150deg) translate(-73px, 80px);
+            }
+            100% {
+                transform: rotate(-150deg) translate(-75px, 83px);
+            }
+        }
+
+        input:checked+label .ball-wrapper .ball {
+            animation: 1.5s linear ball forwards;
+        }
+
+        @keyframes basketball-box {
+            from {
+                background-color: #fdb827;
+            }
+            to {
+                background-color: #542583;
+            }
+        }
+        input:checked+ .basketball-box {
+            animation: .3s linear basketball-box forwards 1.2s;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="wrapper">
+        <div class="toggle-wrapper one">
+            <div class="toggle normal">
+                <input type="checkbox" name="" id="normal">
+                <label class="slide-box">
+                    <div class="toggle-item ball slide"></div>
+                </label>
+            </div>
+        </div>
+
+        <div class="toggle-wrapper two">
+            <div class="toggle normal">
+                <input type="checkbox" name="" id="normal">
+                <label class="check-box">
+                    <div class="toggle-item ball check"></div>
+                </label>
+            </div>
+        </div>
+
+        <div class="toggle-wrapper three">
+            <div class="toggle normal">
+                <input type="checkbox" name="" id="normal">
+                <label class="basketball-box">
+                    <div class="ball-wrapper">
+                        <div class="toggle-item ball basketball"></div>
+                    </div>
+                    <div class="hoop"></div>
+                </label>
+            </div>
+        </div>
+
+        <div class="day-night-circle">
+            <div class="sun"></div>
+            <div class="moon">
+                <div></div>
+                <div></div>
+                <div></div>
+            </div>
+            <div class="stars">
+                <div></div>
+                <div></div>
+                <div></div>
+                <div></div>
+                <div></div>
+                <div></div>
+                <div></div>
+            </div>
+            <div class="water"></div>
+        </div>
+    </div>
+    <style>
+        body {
+            background-color: #899098;
+        }
+        .day-night-circle {
+            position: relative;
+            background: #2a3741;
+            width: 200px;
+            height: 200px;
+            border-radius: 50%;
+            overflow: hidden;
+            padding: 0px;
+            margin: 20px auto;
+            margin-bottom: 10px;
+            box-shadow: 0 0 20px rgb(0 0 0 / 40%);
+            cursor: pointer;
+            transition: all 0.5s ease-in-out;
+        }
+
+        .sun {
+            margin-top: 20px;
+            background: #f2ef88;
+            box-shadow: 0 0 20px rgb(242 239 136 / 40%);
+            width: 30%;
+            height: 30%;
+            border-radius: 50%;
+            position: relative;
+            top: 70%;
+            left: 20%;
+            transition: all 0.5s ease;
+        }
+
+        .moon {
+            position: absolute;
+            margin-top: 20px;
+            background: #d9d8d0;
+            box-shadow: inset -10px 2px 0 0px #899098;
+            width: 22.5%;
+            height: 22.5%;
+            border-radius: 100%;
+            position: relative;
+            margin-left: -50px;
+            left: 65%;
+            top: -10%;
+            overflow: hidden;
+            transition: all 0.5s 0s ease;
+        }
+
+        .moon div:nth-child(n) {
+            position: relative;
+            background: #b9b8b0;
+            border-radius: 50%;
+            box-shadow: inset 4px -2px 0 0px #535457;
+        }
+
+        .moon div:nth-child(1) {
+            top: 25%;
+            left: 12%;
+            width: 27%;
+            height: 27%;
+        }
+
+        .moon div:nth-child(2) {
+            top: -11%;
+            left: 60%;
+            width: 16%;
+            height: 16%;
+        }
+
+        .moon div:nth-child(3) {
+            top: 25%;
+            left: 44%;
+            width: 16%;
+            height: 16%;
+        }
+
+        .stars {
+            opacity: 1;
+            margin-left: 100px;
+            top: 0;
+            left: 0;
+            transition: all 0.4s ease;
+            z-index: 1000;
+        }
+
+        .stars div:nth-child(n) {
+            position: absolute;
+            background: rgba(255, 255, 255, 1);
+            border-radius: 50%;
+            box-shadow: 0 0 10px rgb(255 255 255);
+            overflow: hidden;
+            width: 0.4%;
+            height: 0.4%;
+            margin-left: 20%;
+            margin-top: -20%;
+            transition: all 0.5s ease;
+        }
+
+        .stars div:nth-child(1) {
+            left: 25%;
+            top: 30%;
+        }
+
+        .stars div:nth-child(2) {
+            left: 55%;
+            top: 20%;
+        }
+
+        .stars div:nth-child(3) {
+            left: 60%;
+            top: 60%;
+        }
+
+        .stars div:nth-child(4) {
+            left: 40%;
+            top: 45%;
+        }
+
+        .stars div:nth-child(5) {
+            left: 15%;
+            top: 55%;
+        }
+
+        .stars div:nth-child(6) {
+            left: 40%;
+            top: 10%;
+        }
+
+        .stars div:nth-child(7) {
+            left: 80%;
+            top: 55%;
+        }
+
+        .water {
+            position: absolute;
+            background: #7fa1bb;
+            width: 100%;
+            height: 200px;
+            top: 68%;
+            transition: all 0.5s ease;
+        }
+
+        .day-night-circle:hover {
+            background-color: #e9786b;
+        }
+
+        .day-night-circle:hover .water {
+            background-color: #71baf2;
+        }
+
+        .day-night-circle:hover .moon {
+            top: -40%;
+            left: 125%;
+        }
+
+        .day-night-circle:hover .sun {
+            top: 45%;
+            left: 36%;
+        }
+
+        .day-night-circle:hover .stars {
+            opacity: 0;
+        }
+    </style>
+</body>
+
+</html>

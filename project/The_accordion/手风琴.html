@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+
+        .bg {
+            width: 100%;
+            height: 100vh;
+            position: relative;
+        }
+
+        .bg>div {
+            width: 100%;
+            height: 100vh;
+            background-size: cover;
+            background-position: top center;
+            background-repeat: no-repeat;
+            position: absolute;
+            top: 0;
+            left: 0;
+        }
+
+        .bg div:nth-child(1) {
+            background-image: url(./1.jpg);
+            display: none;
+        }
+
+        .bg div:nth-child(2) {
+            background-image: url(./2.jpg);
+            display: block;
+        }
+
+        .bg div:nth-child(3) {
+            background-image: url(./3.jpg);
+            display: none;
+        }
+
+        .bg div:nth-child(4) {
+            background-image: url(./4.jpg);
+            display: none;
+        }
+
+        .swiper {
+            width: 1000px;
+            height: 500px;
+            /* background-color: aqua; */
+            display: flex;
+            /* position: absolute;
+            top: 150px;
+            left: 0; */
+            position: relative;
+            margin: -600px auto;
+            z-index: 9;
+        }
+
+        .swiper div {
+            width: 100px;
+            height: 100%;
+            background-size: auto 100%;
+            background-position: top center;
+            transition: all .3s;
+            cursor: pointer;
+        }
+
+        .swiper div:nth-child(1) {
+            background-image: url(./1.jpg);
+        }
+
+        .swiper div:nth-child(2) {
+            width: 700px;
+            background-image: url(./2.jpg);
+        }
+
+        .swiper div:nth-child(3) {
+            background-image: url(./3.jpg);
+        }
+
+        .swiper div:nth-child(4) {
+            background-image: url(./4.jpg);
+        }
+    </style>
+</head>
+
+<body>
+    <div class="bg">
+        <div></div>
+        <div></div>
+        <div></div>
+        <div></div>
+    </div>
+    <div class="swiper">
+        <div></div>
+        <div></div>
+        <div></div>
+        <div></div>
+    </div>
+
+    <script>
+        var imgs = document.querySelectorAll(".swiper div");
+        var bgEl = document.querySelector(".bg");
+        var bgs = document.querySelectorAll(".bg div");
+        var current;
+
+        // function showBg(n) {
+        //     for (var i = 0; i < bgs.length; i++) {
+        //         if (i === n) {
+        //             bgs[i].style.display = "block";
+        //         }else {
+        //             bgs[i].style.display = "none";
+        //         }
+        //     }
+        //     return n;
+        // }
+        // current = showBg(1);
+        
+        imgs.forEach(function (img, i) {
+            // console.log(img, i);
+            img.onclick = function () {
+                // imgs[i].style.width = "700px";
+                imgs.forEach(function (pic, index) {
+                    // console.log(pic, index);
+                    if (index === i) {
+                        pic.style.width = "700px";
+                        bgs[index].style.display = "block";
+                    } else {
+                        pic.style.width = "100px";
+                        bgs[index].style.display = "none";
+                    }
+                })
+                // showBg(i);
+            }
+        })
+    </script>
+</body>
+
+</html>

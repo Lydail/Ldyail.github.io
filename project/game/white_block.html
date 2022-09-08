@@ -1,0 +1,297 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .stage {
+            width: 380px;
+            height: 600px;
+            background-color: white;
+            outline: 1px solid #ccc;
+            margin: 30px auto;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .main {
+            width: 100%;
+            height: 100%;
+            position: absolute;
+            top: 0;
+            left: 0;
+        }
+
+        .main i {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 95px;
+            height: 150px;
+            background-color: #cccccc;
+        }
+
+        .main i.played {
+            display: none;
+        }
+
+        .main .start {
+            width: 100%;
+            height: 100%;
+            position: absolute;
+            top: 0;
+            left: 0;
+            background-color: #b2b2b2;
+            color: white;
+            z-index: 9;
+        }
+
+        .main .start h3 {
+            font-size: 24px;
+            text-align: center;
+            height: 50px;
+            line-height: 50px;
+            font-family: '微软雅黑';
+            margin-top: 35%;
+        }
+
+        .main .start .btn {
+            display: block;
+            width: 100px;
+            height: 50px;
+            font-size: 20px;
+            text-align: center;
+            line-height: 50px;
+            margin: 50px auto;
+            background: #4cd964;
+            border-radius: 6px;
+            cursor: pointer;
+            box-shadow: 1px 1px 1px #999;
+            text-shadow: 1px 1px 1px #fff;
+        }
+
+        .main .score {
+            position: absolute;
+            width: 40px;
+            height: 20px;
+            background-color: #a2a2a2;
+            border-radius: 50%;
+            top: 10px;
+            left: 50%;
+            margin-left: -20px;
+            text-align: center;
+            line-height: 20px;
+            z-index: 9;
+        }
+
+        .over {
+            width: 100%;
+            height: 100%;
+            background-color: #b2b2b2d0;
+            position: relative;
+            display: none;
+        }
+
+        .over h1 {
+            width: 200px;
+            height: 50px;
+            text-align: center;
+            color: white;
+            font-size: 26px;
+            font-weight: bold;
+            position: absolute;
+            top: 200px;
+            left: 50%;
+            margin-left: -100px;
+        }
+
+        .over .scores {
+            color: #fff;
+            width: 100px;
+            height: 45px;
+            line-height: 45px;
+            text-align: center;
+            position: absolute;
+            top: 240px;
+            left: 50%;
+            margin-left: -50px;
+        }
+
+        .over .again {
+            display: block;
+            width: 100px;
+            height: 50px;
+            font-size: 20px;
+            text-align: center;
+            line-height: 50px;
+            background: #4cd964;
+            color: #fff;
+            border-radius: 6px;
+            cursor: pointer;
+            box-shadow: 1px 1px 1px #999;
+            text-shadow: 1px 1px 1px #fff;
+            position: absolute;
+            bottom: 220px;
+            left: 50%;
+            margin-left: -50px;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="stage">
+        <div class="main">
+            <!-- <i></i> -->
+            <div class="start">
+                <h3>别踩白块儿</h3>
+                <span class="btn">开始</span>
+            </div>
+            <div class="score">0</div>
+        </div>
+        <div class="over">
+            <h1>Game Over</h1>
+            <h3 class="scores"></h3>
+            <div class="again">重新开始</div>
+        </div>
+    </div>
+
+    <script>
+        var stageEl = document.querySelector(".stage");
+        var mainEl = document.querySelector(".main");
+        var startEl = document.querySelector(".start");
+        var overEl = document.querySelector(".over");
+        var btn = document.querySelector(".btn");
+        var scoreEl = document.querySelector(".score");
+        var scores = document.querySelector(".scores");
+        var againEl = document.querySelector(".again");
+        var score = 0;
+        var speed = 0.05;
+        // 构造器
+        function Dot(y) {
+            this.x = Math.floor(Math.random() * 4);
+            this.y = y;
+            // 创造节点
+            this.node = document.createElement("i");
+            // 更新位置
+            this.updateView();
+            // 把节点追加到mainEl
+            mainEl.appendChild(this.node)
+
+            // 使用_this保存实例对象
+            var _this = this;
+            // 点击方块时
+            this.node.onclick = function () {
+                // 限制按顺序点击  判断点击的元素是不是 所有还没点的第一个
+                var firstUnPlayed = dots.filter(function (dot) {
+                    return !dot.played;
+                })[0];
+                if (this.isSameNode(firstUnPlayed.node)) {
+                    // 事件处理函数内部的this 指向 dom
+                    _this.node.classList.add("played");
+                    _this.played = true;
+                    // 阻止冒泡
+                    event.stopPropagation();
+
+                    // 每点一次音符 
+                    score++;
+                    // 速度变化
+                    if (score % 10 === 0) {
+                        speed += 0.02;
+                    };
+                    // 更新score视图
+                    scoreEl.innerText = score;
+                }
+            }
+        }
+        // 设置移动的距离
+        Dot.prototype.move = function () {
+            this.y += speed;
+        };
+        // 更新位置
+        Dot.prototype.updateView = function () {
+            this.node.style.left = this.x * 95 + 'px';
+            this.node.style.top = this.y * 150 + 'px';
+        }
+        //初始化
+        var dots = [];
+        function init() {
+            // 先生成三个
+            for (var i = 4; i > 0; i--) {
+                var d = new Dot(i - 2);
+                dots.push(d);
+            }
+        }
+        init();
+
+        btn.onclick = function () {
+            startEl.style.display = "none";
+            scoreEl.style.backgroundColor = "#e8e8e8";
+            event.stopPropagation();
+            // 设置定时器
+            var id = setInterval(function () {
+                dots.forEach(function (dot) {
+                    dot.move();
+                    // 移动后还要更新位置
+                    dot.updateView();
+                })
+                // 判断最后一个音符是否已经完全出现
+                // 如果已经完全出现，生成后面一个
+                if (dots[dots.length - 1].y >= 0) {
+                    var d = new Dot(-1);
+                    dots.push(d);
+                }
+                // 检测元素，返回符合条件的第一个未点击的dot
+                var firstUnPlayed = dots.filter(function (dot) {
+                    return !dot.played;
+                })[0];
+
+                // 判断第一个音符是否碰边
+                // firstUnPlayed + 1 是判断音符的底边和盒子的底边相碰
+                // 不 + 1 就是音符的上边和盒子的底边相碰
+                function showEnd() {
+                    // 停止定时器
+                    clearInterval(id);
+                    overEl.style.display = "block";
+                    scores.innerHTML = "分数：" + score;
+                    scoreEl.style.backgroundColor = "#a2a2a2";
+                    // alert("请刷新页面重新开始");
+                }
+                if (firstUnPlayed && (firstUnPlayed.y + 1) * 150 >= 600) {
+                    showEnd();
+                }
+
+                mainEl.onclick = function () {
+                    // console.log(event.clientX, event.clientY);
+                    var x = Math.floor(event.clientX / 95);
+                    // console.log(x);
+                    var firstclick = dots.find(function (dot) {
+                        return dot.y * 150 < event.clientY;
+                    });
+                    y = firstclick ? firstclick.y : dots[0].y;
+                    showEnd();
+                }
+
+                // 超出的要删除
+                var firstByond = dots.filter(function (dot) {
+                    return dot.played;
+                })[0];
+
+                if (firstByond && firstByond.y * 150 > 600) {
+                    mainEl.removeChild(firstByond.node);
+                    dots.splice(dots.indexOf(firstByond), 1);
+                }
+            }, 100);
+
+        }
+        // 重新开始
+        againEl.onclick = function () {
+            // reload()方法用于刷新当前文档。
+            location.reload()
+        }
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        body {
+            margin: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background-color: black;
+            perspective: 800px;
+        }
+
+        .box {
+            width: 150px;
+            height: 250px;
+            /* background-color: rgba(204, 204, 204, 0.405); */
+            position: relative;
+            border-radius: 10px;
+
+            transform-style: preserve-3d;
+            transform: rotateX(-45deg) rotateY(-45deg);
+            /* transform: rotateY(-45deg); */
+        }
+
+        .box>div {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-size: cover;
+            border-radius: 10px;
+        }
+
+        .one {
+            background-image: url(./images/pexels-photo-1382731.jpeg);
+            transform: translateZ(-250px);
+        }
+
+        .two {
+            background-image: url(./images/pexels-photo-1382734.jpeg);
+            transform: translateZ(-170px) translateX(170px) rotateY(135deg);
+        }
+
+        .three {
+            background-image: url(./images/pexels-photo-1391498.webp);
+            transform: translateZ(0px) translateX(250px) rotateY(90deg);
+        }
+
+        .four {
+            background-image: url(./images/pexels-photo-139829.webp);
+            transform: translateZ(170px) translateX(170px) rotateY(45deg);
+        }
+
+        .five {
+            background-image: url(./images/pexels-photo-1462636.jpeg);
+            transform: translateZ(250px);
+        }
+
+        .six {
+            background-image: url(./images/pexels-photo-1758144.jpeg);
+            transform: translateZ(170px) translateX(-170px) rotateY(-45deg);
+        }
+
+        .seven {
+            background-image: url(./images/pexels-photo-206395.webp);
+            transform: translateZ(0px) translateX(-250px) rotateY(-90deg);
+        }
+
+        .eight {
+            background-image: url(./images/8.webp);
+            transform: translateZ(-170px) translateX(-170px) rotateY(-135deg);
+        }
+
+        .box .txt {
+            width: 100%;
+            height: 30px;
+            color: white;
+            font-size: 22px;
+            font-weight: bold;
+            margin: 0;
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            transform: rotateX(90deg);
+        }
+    </style>
+</head>
+
+<body>
+    <div class="box">
+        <h2 class="txt">Photo album</h2>
+        <div class="one"></div>
+        <div class="two"></div>
+        <div class="three"></div>
+        <div class="four"></div>
+        <div class="five"></div>
+        <div class="six"></div>
+        <div class="seven"></div>
+        <div class="eight"></div>
+    </div>
+
+    <script>
+        var boxEl = document.querySelector('.box');
+        var pc = document.querySelectorAll("box>div");
+        var speed = 0.1;
+        function move() {
+            for (var i = 0; i < 8; i++) {
+                speed += 0.1;
+                if (speed >= 360) {
+                    speed = 0;
+                }
+            }
+            var rotate = "rotateX(-30deg) rotateY(" + speed + "deg)";
+            boxEl.style.transform = rotate;
+            // console.log(rotate, speed);
+        }
+
+        setInterval(function () {
+            move();
+        }, 100);
+
+        document.body.onmousemove = function (event) {
+            // console.log(event.pageX);
+            var x = (event.pageX - window.innerWidth / 2) * (20 / (window.innerWidth / 2)) + 50 + '%';
+            // console.log(x);
+            var y = (event.pageY - window.innerHeight / 2) * (20 / (window.innerHeight / 2)) + 50 + "%";
+            document.body.style.perspectiveOrigin = x + " " + y;
+        }
+    </script>
+</body>
+
+</html>

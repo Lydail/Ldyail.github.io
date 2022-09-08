@@ -1,0 +1,479 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        body {
+            margin: 0;
+        }
+
+        .stage {
+            width: 360px;
+            max-width: 580px;
+            height: 630px;
+            background-color: lightblue;
+            background-image: url("./bg.png");
+            background-size: 100% auto;
+            margin: 50px auto;
+            overflow: hidden;
+            position: relative;
+        }
+
+        .stage .main {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            /* background-color: rgba(6, 71, 104, 0.601); */
+            z-index: 999;
+        }
+
+        .stage .main i {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 90px;
+            height: 90px;
+            background-image: url("./jingling.png");
+            background-position: -181px -75px;
+            background-size: 545px;
+            z-index: -1;
+            /* display: none; */
+        }
+
+        .stage .main i.played {
+            background-image: url("./playing.png");
+            background-size: 50%;
+            background-position: center;
+            background-repeat: no-repeat;
+        }
+
+        .main .wrong {
+            width: 100%;
+            height: 100%;
+            position: absolute;
+            top: 0;
+            left: 0;
+            background-color: red;
+            display: none;
+        }
+
+        .start .gqds {
+            display: block;
+            position: absolute;
+            width: 230px;
+            height: 70px;
+            background: url(./jingling.png) no-repeat -4px 8px;
+            background-size: 250%;
+            top: 150px;
+            left: 50%;
+            margin-left: -115px;
+        }
+
+        .start button {
+            display: block;
+            width: 200px;
+            height: 60px;
+            font-size: 26px;
+            font-weight: bold;
+            background-color: white;
+            border-radius: 5px;
+            position: absolute;
+            top: 350px;
+            left: 50%;
+            margin-left: -100px;
+            cursor: pointer;
+        }
+
+        .start .jean {
+            display: block;
+            position: absolute;
+            width: 354px;
+            height: 90px;
+            background: url(./jingling.png) no-repeat -6px -178px;
+            background-size: 160%;
+            bottom: 0;
+            left: 3px;
+            border-radius: 5px;
+        }
+
+        .stage .over {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.647);
+            display: none;
+            z-index: 1000;
+        }
+
+        .end {
+            width: 300px;
+            height: 300px;
+            background-color: white;
+            border-radius: 10px;
+            margin: 200px auto;
+            position: relative;
+        }
+
+        .end .scores {
+            width: 150px;
+            height: 40px;
+            text-align: center;
+            line-height: 40px;
+            font-size: 24px;
+            font-weight: bold;
+            position: absolute;
+            top: 50px;
+            left: 50%;
+            margin-left: -75px;
+            color: black;
+        }
+
+        .end .poor {
+            display: block;
+            width: 230px;
+            height: 70px;
+            background: url(./level1.png) no-repeat;
+            background-size: 100%;
+            position: absolute;
+            top: 150px;
+            left: 50%;
+            margin-left: -115px;
+            display: none;
+        }
+
+        .end .poet {
+            display: block;
+            width: 230px;
+            height: 70px;
+            background: url(./level2.png) no-repeat;
+            background-size: 100%;
+            position: absolute;
+            top: 150px;
+            left: 50%;
+            margin-left: -115px;
+            display: none;
+        }
+
+        .end .master {
+            display: block;
+            width: 230px;
+            height: 70px;
+            background: url(./level3.png) no-repeat;
+            background-size: 100%;
+            position: absolute;
+            top: 150px;
+            left: 50%;
+            margin-left: -115px;
+            display: none;
+        }
+
+        .count {
+            display: flex;
+            position: relative;
+            z-index: 9999;
+            justify-content: center;
+            top: 10px;
+            pointer-events: none;
+        }
+
+        .num {
+            display: block;
+            width: 28px;
+            height: 35px;
+            /* background-color: red; */
+            background-image: url("./score.png");
+            background-size: auto 100%;
+            background-repeat: no-repeat;
+        }
+
+        .num0 {
+            background-position-x: 0;
+        }
+
+        .num1 {
+            background-position-x: -28px;
+        }
+
+        .num2 {
+            background-position-x: -56px;
+        }
+
+        .num3 {
+            background-position-x: -84px;
+        }
+
+        .num4 {
+            background-position-x: -112px;
+        }
+
+        .num5 {
+            background-position-x: -140px;
+        }
+
+        .num6 {
+            background-position-x: -168px;
+        }
+
+        .num7 {
+            background-position-x: -196px;
+        }
+
+        .num8 {
+            background-position-x: -224px;
+        }
+
+        .num9 {
+            background-position-x: -252px;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="stage">
+        <section class="main">
+            <div class="start">
+                <span class="gqds"></span>
+                <button>开始游戏</button>
+                <span class="jean"></span>
+            </div>
+        </section>
+        <section class="over">
+            <div class="end">
+                <span class="scores"></span>
+                <span class="poor"></span>
+                <span class="poet"></span>
+                <span class="master"></span>
+            </div>
+        </section>
+        <section class="count">
+            <i class="num num0"></i>
+        </section>
+    </div>
+    <script>
+        var mainEl = document.querySelector(".stage .main");
+        var overEl = document.querySelector(".stage .over");
+        var countEl = document.querySelector(".count");
+
+        var music = [
+            [
+                25, 21, 22, 23, 24, 25, 21, 21, 26, 24, 25, 26, 27, 31, 21, 21, 24, 25, 24, 23, 22, 23, 24, 23, 22, 21, 17,
+                21, 22, 23, 21, 22, 25, 21, 22, 23, 24, 25, 21, 21, 26, 24, 25, 26, 27, 31, 21, 21, 24, 25, 24, 23, 22, 23,
+                24, 23, 22, 21, 22, 23, 22, 21, 17, 21,
+            ],
+            [
+                23, 22, 21, 17, 16, 15, 16, 17, 21, 17, 16, 15, 14, 13, 14, 12, 21, 17, 21, 11, 7, 15, 12, 13, 11, 21, 17, 16,
+                17, 23, 25, 26, 24, 23, 22, 24, 24, 23, 21, 17, 16, 15, 14, 13, 12, 14, 13, 12, 11, 12, 13, 14, 15, 12, 15,
+                14, 13, 16, 15, 14, 15, 14, 13, 12, 11, 6, 16, 17, 21, 17, 16, 15, 14, 13, 12, 16, 15, 16, 15, 14, 13, 23, 22,
+                21, 22, 21, 23, 22, 24, 25, 23, 24, 25, 23, 24, 25, 15, 16, 17, 21, 22, 23, 24, 23, 21, 22, 23, 13, 14, 15,
+                16, 15, 14, 15, 13, 14, 15, 14, 16, 15, 14, 13, 12, 13, 12, 11, 12, 13, 14, 15, 16, 14, 16, 15, 16, 17, 21,
+                15, 16, 17, 21, 22, 23, 24, 25, 23, 21, 22, 23, 22, 21, 22, 17, 21, 22, 23, 22, 21, 17, 21, 16, 17, 21, 11,
+                12, 13, 14, 13, 12, 13, 21, 17, 21, 16, 21, 17, 16, 15, 14, 15, 14, 13, 14, 15, 16, 17, 11, 16, 21, 17, 21,
+                17, 16, 17, 21, 22, 21, 17, 21, 16, 17, 23, 13, 14, 13, 12, 22, 23, 22, 21, 13, 11, 16, 15, 5, 4, 5, 6, 16,
+                17, 16, 17, 5, 4, 5, 6, 16, 15, 16, 17, 17, 16, 17, 11, 21, 22, 21, 17, 7, 11, 7, 6, 16, 15, 16, 17, 7, 13,
+                12, 11, 21, 22, 24, 23, 13, 15, 23, 21, 24, 23, 24, 22, 15, 14, 15, 13, 21, 17, 21, 13, 15, 15, 16, 17, 15,
+                13, 21, 22, 23, 21, 23, 23, 22, 21, 17, 16, 16, 15, 16, 17, 21, 23, 22, 21, 23,
+            ],
+        ];
+        // 乐谱
+        var spectrum = music[Math.floor(Math.random() * music.length)];
+        // 点击音符次数
+        var score = 0;
+        // 速度
+        var speed = 0.1;
+        //   构造器
+        function Dot(y) {
+            this.x = Math.floor(Math.random() * 4);
+            this.y = y;
+
+            // 创建节点
+            this.node = document.createElement("i");
+
+            // 更新视图
+            this.updateView();
+
+            // 把node追加到main里面去
+            mainEl.appendChild(this.node);
+
+            // 使用_this保存实例对象
+            var _this = this;
+            // 点击音符时
+            this.node.onclick = function () {
+                // 限制按顺序点击  判断点击的元素是不是 所有还没点的第一个
+                var firstUnPlayed = dots.filter(function (dot) {
+                    return !dot.played;
+                })[0];
+                // isSameNode方法是判断某个节点与给定的节点是同一个节点，如果相同返回true，不相同返回false
+                if (this.isSameNode(firstUnPlayed.node)) {
+                    // 事件处理函数内部的this 指向 dom
+                    // console.log(this, _this);
+                    _this.node.classList.add("played");
+                    _this.played = true;
+                    // 阻止冒泡
+                    event.stopPropagation();
+
+                    // 添加音乐
+                    var node = document.createElement("audio");
+                    node.src = "./music/sound_" + _this.music + ".mp3";
+                    node.play();
+
+                    // 每点一次音符 
+                    score++;
+                    // 速度变化
+                    if (score % 10 === 0) {
+                        speed += 0.01;
+                    }
+
+                    // 更新count视图
+                    countEl.innerHTML = "";
+                    String(score).split("").forEach(function (n) {
+                        var node = document.createElement("i");
+                        node.classList.add("num");
+                        node.classList.add("num" + n);
+                        countEl.appendChild(node);
+                    });
+
+                }
+            };
+        }
+        // 设置移动的距离
+        Dot.prototype.move = function () {
+            this.y += speed;
+        };
+
+        // 更新视图、位置
+        Dot.prototype.updateView = function () {
+            this.node.style.left = this.x * 90 + 'px';
+            this.node.style.top = this.y * 90 + 'px';
+        }
+        // var d1 = new Dot(1)
+
+
+        // 初始化
+        var dots = [];
+        function init() {
+            // 首先要生成3个
+            for (var i = 4; i > 0; i--) {
+                var d = new Dot(i - 2);
+
+                // 给每个小块添加节奏
+                var tmp = spectrum.shift();
+                spectrum.push(tmp);
+                d.music = tmp;
+                dots.push(d);
+            }
+        }
+        init();
+
+        var start = document.querySelector(".start");
+        var btn = document.querySelector("button");
+        var scores = document.querySelector(".scores");
+
+        var poor = document.querySelector(".poor");
+        var poet = document.querySelector(".poet");
+        var master = document.querySelector(".master");
+
+        btn.onclick = function () {
+            start.style.display = "none";
+            event.stopPropagation();
+            // 设置定时器，让它每隔100ms移动一次
+            var id = setInterval(function () {
+                dots.forEach(function (dot) {
+                    dot.move();
+                    // 移动后还要更新位置
+                    dot.updateView();
+                })
+
+                // 判断最后一个音符是否已经完全出现
+                // 如果已经完全出现，生成后面一个
+                if (dots[dots.length - 1].y >= 0) {
+                    var d = new Dot(-1);
+
+                    // 给每个小块添加节奏
+                    var tmp = spectrum.shift();
+                    spectrum.push(tmp);
+                    d.music = tmp;
+                    dots.push(d);
+                }
+
+                // 结束游戏
+                // 如果第一个音符已经碰到底边，那么游戏结束
+
+                // 检测元素，返回符合条件的第一个未点击的dot
+                var firstUnPlayed = dots.filter(function (dot) {
+                    return !dot.played;
+                })[0];
+                // console.log(firstUnPlayed);
+
+                function showEnd() {
+                    // 停止定时器
+                    clearInterval(id);
+                    scores.innerHTML = "游戏得分: " + score;
+                    overEl.style.display = "block";
+
+                    // 根据分数多少给出评价
+                    if (score < 100) {
+                        poor.style.display = "block";
+                    }
+                    if (score >= 100) {
+                        poet.style.display = "block";
+                    }
+                    if (score >= 200) {
+                        master.style.display = "block";
+                    }
+                }
+
+                // 判断第一个音符是否碰边
+                // firstUnPlayed + 1 是判断音符的底边和盒子的底边相碰
+                // 不 + 1 就是音符的上边和盒子的底边相碰
+                if (firstUnPlayed && (firstUnPlayed.y + 1) * 90 >= 630) {
+                    showEnd();
+                }
+
+                // 点到除音符以外的地方
+                mainEl.onclick = function () {
+                    // console.log(event.clientX, event.clientY);
+
+                    // 从第一个开始, 按顺序点击
+                    var x = Math.floor(event.clientX / 90);
+                    // console.log(x);
+
+                    var firstLtClick = dots.find(function (dot) {
+                        // console.log(dot);
+                        return dot.y * 90 < event.clientY;
+                    });
+                    y = firstLtClick ? firstLtClick.y : dots[0].y;
+                    // console.log(x, y);
+                    showEnd();
+                }
+
+                // 判断所有已经点击的 是否超出视口范围 y
+                var firstPlayed = dots.filter(function (dot) {
+                    return dot.played;
+                })[0];
+
+                // 如果超出
+                if (firstPlayed && firstPlayed.y * 90 > 640) {
+                    // 已经点击的第一个元素 超出
+                    // 删除数组删除dom
+                    mainEl.removeChild(firstPlayed.node);
+                    dots.splice(dots.indexOf(firstPlayed), 1);
+                }
+
+            }, 100);
+
+
+        }
+
+
+    </script>
+</body>
+
+</html>

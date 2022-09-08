@@ -1,0 +1,265 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        a {
+            text-decoration: none;
+        }
+
+        .box {
+            width: 300px;
+            margin: 50px auto;
+        }
+
+        .ih-item {
+            box-sizing: border-box;
+            transform-style: preserve-3d;
+            margin: 30px 0;
+        }
+
+        .ih-item a {
+            color: #333;
+        }
+
+        .ih-item.circle {
+            position: relative;
+            width: 220px;
+            height: 220px;
+            border-radius: 50%;
+        }
+
+        .ih-item.circle .img {
+            position: relative;
+            width: 220px;
+            height: 220px;
+            border-radius: 50%;
+            transform-origin: center;
+            transition: all 0.35s ease-in-out;
+        }
+
+        .ih-item.circle .img img {
+            border-radius: 50%;
+        }
+
+        .img:before {
+            position: absolute;
+            display: block;
+            content: '';
+            width: 100%;
+            height: 100%;
+            border-radius: 50%;
+            box-shadow: inset 0 0 0 16px rgb(255 255 255 / 60%), 0 1px 2px rgb(0 0 0 / 30%);
+        }
+
+        .ih-item img {
+            width: 100%;
+            height: 100%;
+        }
+
+        .info {
+            width: 100%;
+            height: 100%;
+            position: absolute;
+            top: 0;
+            left: -250px;
+            text-align: center;
+            background: rgba(26, 74, 114, 0.6);
+            border-radius: 50%;
+            opacity: 0;
+            transition: all 0.35s ease-in-out;
+            pointer-events: none;
+        }
+
+        .info h3 {
+            color: #fff;
+            text-transform: uppercase;
+            position: relative;
+            letter-spacing: 2px;
+            font-size: 22px;
+            margin: 0 30px;
+            padding: 50px 0 0 0;
+            height: 60px;
+            font-weight: normal;
+            text-shadow: 0 0 1px white, 0 1px 2px rgb(0 0 0 / 30%);
+        }
+
+        .info p {
+            color: #bbb;
+            padding: 10px 5px;
+            font-style: italic;
+            margin: 0 30px;
+            font-size: 12px;
+            border-top: 1px solid rgba(255, 255, 255, 0.5);
+        }
+
+        .circle1:hover .img1 {
+            transform: rotateZ(-60deg);
+        }
+
+        .circle1:hover .info1 {
+            left: 0;
+            opacity: 1;
+        }
+
+        .info2 {
+            z-index: -1;
+            background-color: #1a4a72;
+            transform: scale(1);
+        }
+
+        .circle2:hover .img2 {
+            margin-left: 100px;
+            transform: scale(0.5);
+        }
+
+        .circle2:hover .info2 {
+            left: 0;
+            opacity: 1;
+        }
+
+        @keyframes move1 {
+            0% {
+                transform: scale(1);
+            }
+
+            25% {
+                transform: scale(0.5);
+            }
+
+            50% {
+                transform: scale(0.5);
+            }
+
+            75% {
+                
+            }
+
+            90% {
+                opacity: 0;
+                transform: translateX(-250px) scale(0.5);
+            }
+
+            100% {
+                opacity: 0;
+                transform: translateX(-250px) scale(0.5);
+            }
+        }
+
+        .circle3:hover .img3 {
+            animation: move1 .8s linear forwards;
+        }
+
+        .info3 {
+            left: 250px;
+            background-color: #1a4a72;
+        }
+
+        @keyframes move2 {
+            0% {
+                opacity: 0.5;
+                transform: translateX(0px) scale(0.5);
+            }
+
+            25% {
+                opacity: 0.5;
+                transform: translateX(-125px) scale(0.5);
+            }
+
+            50% {
+                opacity: 1;
+                transform: translateX(-250px) scale(0.5);
+            }
+
+            75% {
+                opacity: 1;
+                transform: translateX(-250px) scale(0.5);
+            }
+
+            100% {
+                opacity: 1;
+                transform: translateX(-250px) scale(1);
+            }
+        }
+
+        .circle3:hover .info3 {
+            animation: move2 .6s .4s linear forwards;
+        }
+
+        .img4 {
+            top: -220px;
+            left: -250px;
+            opacity: 0;
+        }
+        .img4>img {
+            opacity: 0;
+        }
+
+    </style>
+</head>
+
+<body>
+    <div class="box">
+        <div class="ih-item circle circle1">
+            <a href="#">
+                <div class="img img1">
+                    <img src="./1.jpg" alt="">
+                </div>
+                <div class="info info1">
+                    <h3>Heading here</h3>
+                    <p>Description goes here</p>
+                </div>
+            </a>
+        </div>
+        <div class="ih-item circle circle2">
+            <a href="#">
+                <div class="img img2">
+                    <img src="./2.jpg" alt="">
+                </div>
+                <div class="info info2">
+                    <h3>Heading here</h3>
+                    <p>Description goes here</p>
+                </div>
+            </a>
+        </div>
+        <div class="ih-item circle circle3">
+            <a href="#">
+                <div class="img img3">
+                    <img src="./3.jpg" alt="">
+                </div>
+                <div class="img img4">
+                    <img src="./1.jpg" alt="">
+                </div>
+                <div class="info info3">
+                    <h3>Heading here</h3>
+                    <p>Description goes here</p>
+                </div>
+            </a>
+        </div>
+    </div>
+
+    <script>
+        var img3 = document.querySelector('.img3');
+        var img4 = document.querySelector('.img4');
+        var imgEl4 = document.querySelector('.img4 img');
+
+        document.querySelector('.circle3').onmouseleave = function () {
+            img3.style.opacity = 0;
+            img4.style.left = 0;
+            img4.style.opacity = 1;
+            imgEL4.style.opacity = 0;
+        }
+        document.querySelector('.circle3').onmouseenter = function () {
+            img3.style.opacity = 1;
+            imgEl4.style.opacity = 1;
+            img4.style.opacity = 0;
+            img4.style.left = "-250px";
+        }
+    </script>
+</body>
+
+</html>

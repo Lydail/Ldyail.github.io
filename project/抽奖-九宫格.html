@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        p {
+            width: 320px;
+            height: 40px;
+            line-height: 40px;
+            /* background-color: aquamarine; */
+            outline: 1px solid #ccc;
+            box-shadow: 2px 2px 2px gray,
+                -2px 2px 2px gray,
+                2px -2px 2px gray,
+                -2px -2px 2px gray;
+            margin: 100px auto;
+            margin-bottom: 0;
+            text-align: center;
+        }
+
+        div {
+            width: 320px;
+            height: 320px;
+            /* background-color: lightblue; */
+            margin: 30px auto;
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+            align-content: space-between;
+
+        }
+
+        div span {
+            display: block;
+            width: 100px;
+            height: 100px;
+            line-height: 100px;
+            text-align: center;
+            background-color: #16baec;
+            color: white;
+            box-sizing: border-box;
+        }
+
+        div span.start {
+            cursor: pointer;
+            background-color: #ff943d;
+        }
+
+
+        div span.mask {
+            background-color: #4e4e4e;
+            /* transition: all .2s; */
+        }
+    </style>
+</head>
+
+<body>
+    <p class="prize"></p>
+    <div>
+        <!-- <div class="mask"></div> -->
+        <span>手机</span>
+        <span>平板</span>
+        <span>电磁炉</span>
+        <span>洗衣机</span>
+        <span class="start">开始</span>
+        <span>衣柜</span>
+        <span>冰箱</span>
+        <span>电脑</span>
+        <span>电视</span>
+    </div>
+
+    <script>
+        var prize = document.querySelector(".prize");
+        var divEl = document.querySelector("div");
+        // var span = document.querySelector("span");
+        var span = document.getElementsByTagName("span")
+        var start = document.querySelector(".start");
+
+        // 根据先后顺序设置下标
+        var list = [0, 1, 2, 5, 8, 7, 6, 3];
+
+        var current = 0;
+        var count = 0; // 转动的次数
+        var random = Math.floor(Math.random() * 8 + 30);
+
+
+        function show(n) {
+            for (var i = 0; i < list.length; i++) {
+                if (i === n) {
+                    span[list[i]].classList.add("mask");
+                    span[list[i]].style.transition = "all .3s";
+                } else {
+                    span[list[i]].classList.remove("mask");
+                }
+            }
+            return n;
+        }
+
+        current = show(0);
+        function showNext() {
+            current++;
+            if (current >= list.length) {
+                current = 0;
+            }
+            show(current);
+        }
+
+        start.onmouseenter = function () {
+            start.style.backgroundColor = "#c05d0c";
+            start.style.transition = "all .5s";
+        }
+        start.onmouseleave = function () {
+            start.style.backgroundColor = "#ff943d";
+            start.style.transition = "all .5s";
+        }
+
+        start.onclick = function () {
+            // function showNext(n, time) {
+            //     // current++;
+            //     // if (current >= list.length) {
+            //     //     current = 0;
+            //     // }
+            //     // show(current);
+            //     setTimeout(function () {
+            //         show(n % 8);
+            //         n++;
+            //         if (n < 16) {
+            //             time -= 20;
+            //         }
+            //         if (n > 32) {
+            //             time += 10;
+            //         }
+            //         if (n <= random) {
+            //             showNext(n, time)
+            //         }
+
+            //         // count++;
+
+            //         if (n > random) {
+            //             clearInterval(set);
+            //             var tips = document.querySelector(".mask").textContent;
+            //             prize.innerHTML = "恭喜你抽中了" + tips + "! ! !";
+
+            //             // 添加点击事件，结束后继续点击
+            //             start.style.pointerEvents = "all";
+            //             n = 0;
+            //         }
+            //         // document.querySelector(".prize").innerHTML = "";
+            //         // 点击后移除点击事件，避免重复点击
+            //         start.style.pointerEvents = "none";
+            //     }, time);
+
+            // }
+
+
+
+
+            // 点击后移除点击事件，避免重复点击
+            // start.onclick = null;
+
+            var set = setInterval(function () {
+
+                showNext();
+                count++;
+                if (count === random) {
+                    clearInterval(set);
+                    var tips = document.querySelector(".mask").textContent;
+                    document.querySelector(".prize").innerHTML = "恭喜你抽中了" + tips + "! ! !";
+
+                    // 添加点击事件，结束后继续点击
+                    start.style.pointerEvents = "all";
+                    count = 0;
+                }
+            }, 100);
+            showNext()
+            // showNext(0, 300);
+            document.querySelector(".prize").innerHTML = "";
+            // 点击后移除点击事件，避免重复点击
+            start.style.pointerEvents = "none";
+        }
+
+
+    </script>
+</body>
+
+</html>

@@ -200,28 +200,16 @@ ul {
     left: 270px;
 }
 
-.banner h2 {
-    margin-top: 200px;
-    font-family: Impact;
-    font-weight: bold;
-    font-size: 4rem;
-    color: #fff;
-    letter-spacing: 4px;
-}
-
 .banner .cards {
     display: flex;
-    justify-content: space-between;
-    align-content: space-between;
     flex-wrap: wrap;
     width: 1000px;
     height: 753.6px;
     margin-left: 80px;
-    /* padding-top: 60px;
-    padding-bottom: 60px; */
-    padding-top: 100px;
-    padding-bottom: 30px;
+    padding-top: 60px;
+    padding-bottom: 60px;
     box-sizing: border-box;
+    overflow: auto;
 }
 
 .banner .cards li {
@@ -229,6 +217,7 @@ ul {
     height: 290px;
     border-radius: 10px;
     box-shadow: -20px -17px 10px 0px rgb(0 0 0 / 39%);
+    margin: 20px 14px;
 }
 
 .banner .cards li a {
@@ -259,4 +248,13 @@ ul {
     background-color: rgba(0, 0, 0, 0.401);
     border-bottom-left-radius: 10px;
     border-bottom-right-radius: 10px;
+}
+
+.cards::-webkit-scrollbar {
+    width: 6px;
+}
+
+.cards::-webkit-scrollbar-thumb {
+    /* background-color: #dcc87d; */
+    background: transparent;
 }
