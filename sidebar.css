@@ -58,6 +58,7 @@ ul {
     width: 100%;
     margin-top: 35px;
     text-align: center;
+    position: relative;
 }
 
 .headSculpture img {
@@ -69,8 +70,24 @@ ul {
     transition: all 1s;
 }
 
+@keyframes color {
+    0% {
+        box-shadow: 0px 0px 20px 10px #f1c676;
+    }
+    50% {
+        box-shadow: 0px 0px 20px 15px #fbb738;
+    }
+    100% {
+        box-shadow: 0px 0px 20px 20px #fca402;
+    }
+}
+
 .headSculpture .img {
     transform: translate(0, 0);
+    position: relative;
+    z-index: 99;
+    /* box-shadow: 0px 0px 20px 20px #eb9b09; */
+    animation: color .6s linear infinite alternate forwards;
 }
 
 .headSculpture p {
@@ -271,4 +288,14 @@ ul {
 .cards::-webkit-scrollbar-thumb {
     /* background-color: #dcc87d; */
     background: transparent;
+}
+
+.person {
+    width: 304px;
+    height: 250px;
+    background-image: url(./images/shfiguarts.gif);
+    background-size: cover;
+    position: fixed;
+    bottom: 20px;
+    right: -50px;
 }

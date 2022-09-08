@@ -1,0 +1,250 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Document</title>
+  <style>
+    .box {
+      width: 480px;
+      height: 270px;
+      outline: 1px solid black;
+      margin: 0 auto;
+      position: relative;
+      overflow: hidden;
+      border-radius: 10px;
+    }
+
+    .screen {
+      width: 480px;
+      height: 270px;
+      overflow: hidden;
+      position: relative;
+      z-index: 9;
+    }
+
+    .screen img {
+      /* width: 480px;
+      height: 270px; */
+      position: absolute;
+      top: 0;
+      left: 0;
+      pointer-events: none;
+    }
+
+    .dm {
+      width: 1800px;
+      height: 50px;
+      line-height: 50px;
+      color: white;
+      position: absolute;
+      top: 0;
+      right: -100px;
+      z-index: 999;
+      word-spacing: 40px;
+    }
+
+    .dm2 {
+      width: 1800px;
+      height: 50px;
+      color: white;
+      position: absolute;
+      top: 50px;
+      right: -100px;
+      z-index: 999;
+      word-spacing: 40px;
+    }
+
+
+    .time {
+      position: absolute;
+      bottom: 5px;
+      left: 10px;
+      color: white;
+      z-index: 99;
+      display: none;
+    }
+
+    .text {
+      position: absolute;
+    }
+
+    .barbox {
+      width: 100%;
+      height: 15px;
+      background-color: black;
+      border-top-left-radius: 10px;
+      border-top-right-radius: 10px;
+      position: relative;
+    }
+    .bar {
+      /* width: 105px; */
+      height: 5px;
+      background-color: white;
+      border-radius: 5px;
+      position: relative;
+      top: 5px;
+      left: 5px;
+      z-index: 9999;
+    }
+    .mask {
+      width: 100%;
+      height: 100%;
+      background-color: rgba(0, 0, 0, 0.292);
+      position: absolute;
+      top: 0;
+      left: 0;
+      z-index: 999;
+      display: none;
+    }
+    .txt {
+      width: 480px;
+      margin: 5px auto;
+    }
+  </style>
+</head>
+
+<body>
+  <div class="box">
+    <div class="mask"></div>
+    <div class="screen">
+      <img src="./486142478_dc4dcb-0001.jpg" alt="">
+      <div class="barbox">
+        <div class="bar"></div>
+      </div>
+    </div>
+    <div class="dm"> </div>
+    <div class="dm2"></div>
+    <div class="time">22:53</div>
+  </div>
+  <div class="txt">海绵宝宝 中文配音 161</div>
+  <script>
+    // https://www.bilibili.com/anime/?spm_id_from=333.1007.0.0
+    var pvideo = {
+      duration: 1303,
+      img_x_len: 10,
+      img_y_len: 10,
+      img_x_size: 480,
+      img_y_size: 270,
+      image: [
+        "//bimp.hdslb.com/videoshotpvhdboss/486142478_dc4dcb-0001.jpg",
+        "//bimp.hdslb.com/videoshotpvhdboss/486142478_dc4dcb-0002.jpg",
+      ],
+      index: [
+        0, 0, 8, 14, 20, 25, 31, 39, 50, 61, 67, 73, 80, 87, 93, 104, 116, 126, 132, 138, 144, 152, 159, 170, 177,
+        186, 196, 207, 215, 224, 231, 238, 244, 249, 255, 260, 265, 271, 278, 283, 290, 297, 303, 311, 319, 330, 335,
+        350, 360, 365, 372, 383, 390, 401, 406, 411, 421, 428, 434, 444, 450, 457, 467, 472, 481, 487, 497, 502, 514,
+        520, 534, 542, 547, 555, 562, 568, 575, 581, 587, 592, 598, 605, 610, 615, 621, 633, 642, 650, 658, 668, 677,
+        690, 696, 702, 709, 715, 720, 733, 740, 746, 751, 759, 767, 776, 782, 790, 798, 804, 814, 826, 833, 840, 850,
+        856, 863, 872, 878, 886, 896, 903, 911, 918, 929, 937, 948, 953, 959, 965, 973, 979, 985, 994, 1001, 1015,
+        1022, 1028, 1034, 1040, 1047, 1059, 1064, 1071, 1077, 1084, 1090, 1099, 1105, 1111, 1121, 1130, 1139, 1150,
+        1156, 1162, 1171, 1178, 1184, 1191, 1197, 1203, 1210, 1216, 1221, 1228, 1233, 1242, 1250, 1260, 1272, 1282,
+        1292, 1297,
+      ],
+    };
+    var dm = [
+      "章鱼哥还是没有胜过强风暴雨(doge)",
+      "日本裁判",
+      "日本裁判",
+      "海绵宝宝笑死我了",
+      "黑人小哥",
+      "堡垒之夜",
+      "最喜欢的一集",
+      "最喜欢的一集",
+      "喜欢",
+      "我怎么觉得派大星这个配音我在神奇宝贝里听过",
+      "我看见你了",
+      "但凡章鱼哥早点回去都不至于这样",
+      "这……这我还真有可能“模仿”",
+      "为什么非要执着于台配或者央配呢",
+      "派总依旧稳定输出",
+      "包租公～",
+      "为什么台配的海绵宝宝跟低能儿似的",
+      "井字游戏，其实可以先手必胜的",
+      "我小时候就看的台配",
+      "终于找到了",
+    ];
+
+    var box = document.querySelector('.box')
+    var screenEl = document.querySelector('.screen');
+    var dmEl = document.querySelector('.dm');
+    var dm2El = document.querySelector('.dm2');
+    var imgEl = document.querySelector('img');
+    var bar = document.querySelector('.bar');
+    var timer = document.querySelector('.time')
+    var mask = document.querySelector('.mask')
+    var x = 0;
+    var y = 0;
+    var offsetLeft = box.offsetLeft;
+
+    bar.style.width = 0 + 'px'
+
+    box.onmousemove = function () {
+      // 鼠标指针坐标
+      var mx = event.offsetX;
+      // 进度条
+      bar.style.width = mx + 'px';
+      // Math.trunc() 方法会将数字的小数部分去掉，只保留整数部分。
+      var a = Math.trunc(mx / 4.8) % 10;
+      var b = Math.trunc(mx / 48);
+      if (b > 9) {
+        b = 9;
+      }
+      imgEl.style.left = a * (-480) + 'px';
+      imgEl.style.top = b * (-270) + 'px';
+    }
+
+    // 弹幕
+
+    // 定义两个空字符串来接收弹幕
+    var str1 = '';
+    var str2 = '';
+    var w = -1800
+    for (var i = 0; i < dm.length; i += 2) {
+      // 赋值  " " 让弹幕之间间隔开
+      str1 += dm[i] + ' ';
+      str2 += dm[i + 1] + ' ';
+    }
+    dmEl.innerText = str1;
+    dmEl.style.right = "-1800px";
+
+    dm2El.innerText = str2;
+    dm2El.style.right = "-1800px";
+
+    box.onmouseenter = function () {
+      bar.style.display = "block";
+      timer.style.display = "block";
+      mask.style.display = "block";
+      var time = setInterval(function () {
+        dmEl.style.right = w + "px";
+        dm2El.style.right = w + "px";
+        // 每次循环  right变大
+        w += 6;
+        // right大于500时，弹幕重新开始
+        if (w > 500) {
+          dmEl.style.right = "-1800px";
+          dm2El.style.right = "-1800px";
+          w = -1800;
+        }
+      }, 100);
+
+      box.onmouseleave = function () {
+        clearInterval(time);
+        bar.style.display = "none";
+        timer.style.display = "none";
+        mask.style.display = "none";
+      }
+    }
+
+
+
+
+
+
+
+  </script>
+</body>
+
+</html>
