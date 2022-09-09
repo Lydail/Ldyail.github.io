@@ -293,7 +293,8 @@ ul {
 .person {
     width: 304px;
     height: 250px;
-    background-image: url(./images/shfiguarts.gif);
+    /* background-image: url(./images/shfiguarts.gif); */
+    background-image: url(./images/cxk.gif);
     background-size: cover;
     position: fixed;
     bottom: 20px;
