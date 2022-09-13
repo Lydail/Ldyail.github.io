@@ -57,7 +57,7 @@ $(function () {
    $('.list li').click(function () {
       // $(this).addClass('active').siblings().removeClass("active")
       $('.banner').css({
-         top: -753.6 * $(this).index(),
+         top: -window.innerHeight * $(this).index(),
          transition: "all .3s"
       });
    });

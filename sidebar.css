@@ -30,7 +30,7 @@ ul {
 
 #wrapper .sidebar {
     width: 220px;
-    height: 753.6px;
+    height: 100%;
     position: fixed;
     top: 0;
     left: -220px;
@@ -210,7 +210,7 @@ ul {
 
 .banner {
     width: 100%;
-    height: 753.6px;
+    height: 100%;
     text-align: center;
     position: absolute;
     top: 0;
@@ -219,7 +219,7 @@ ul {
 
 .banner .home {
     width: 1000px;
-    height: 753.6px;
+    height: 100%;
     margin-left: 80px;
     padding-top: 60px;
     padding-bottom: 60px;
@@ -231,14 +231,22 @@ ul {
     margin: 20px;
 }
 
+.banner .card-box {
+    width: 100%;
+    height: 100%;
+    margin-left: 80px;
+    position: relative;
+}
+
 .banner .cards {
     display: flex;
     flex-wrap: wrap;
     width: 1000px;
-    height: 753.6px;
-    margin-left: 80px;
-    padding-top: 60px;
-    padding-bottom: 60px;
+    height: 640px;
+    position: absolute;
+    top: 50%;
+    left: 0;
+    margin-top: -300px;
     box-sizing: border-box;
     overflow: auto;
 }
