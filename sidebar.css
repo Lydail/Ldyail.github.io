@@ -74,9 +74,11 @@ ul {
     0% {
         box-shadow: 0px 0px 20px 10px #f1c676;
     }
+
     50% {
         box-shadow: 0px 0px 20px 15px #fbb738;
     }
+
     100% {
         box-shadow: 0px 0px 20px 20px #fca402;
     }
@@ -227,7 +229,43 @@ ul {
     overflow: auto;
 }
 
-.banner .home h1,h3 {
+.study_road {
+    font-size: 24px;
+    margin: 30px 0;
+}
+
+.banner .home .study {
+    width: 100%;
+
+}
+
+.banner .home .study .road {
+    width: 100%;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+}
+
+.banner .home .study .road li {
+    margin: 0 20px 40px 0;
+    display: flex;
+    align-items: center;
+}
+
+.banner .home .study .road li p {
+    margin-top: 10px;
+    background-color: #c8caca2b;
+    padding: 10px;
+    color: #fff;
+}
+
+.banner .home .study .road li .dir {
+    margin-left: 20px;
+    color: rgb(255, 255, 255);
+}
+
+.banner .home h1,
+h3 {
     margin: 20px;
 }
 
@@ -287,6 +325,15 @@ ul {
     background-color: rgba(0, 0, 0, 0.401);
     border-bottom-left-radius: 10px;
     border-bottom-right-radius: 10px;
+}
+
+.home::-webkit-scrollbar {
+    width: 6px;
+}
+
+.home::-webkit-scrollbar-thumb {
+    /* background-color: #dcc87d; */
+    background: transparent;
 }
 
 .cards::-webkit-scrollbar {
